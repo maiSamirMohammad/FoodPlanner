@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">FoodPlanner</string>
+    <string name="app_name">Delicious Dish</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="skip">Skip</string>
+    <string name="content_description_pancakes">Pancakes Background</string>
+    <string name="content_description_google">Google Log In</string>
 </resources>
