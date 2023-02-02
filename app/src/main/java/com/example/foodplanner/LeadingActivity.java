@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
 
 public class LeadingActivity extends AppCompatActivity {
