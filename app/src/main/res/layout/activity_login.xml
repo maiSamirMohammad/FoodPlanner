@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:fontFamily="@font/itim_regular"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/itim_regular"
+        android:text="Welcome back! You're just a step away from a delicious dish :)"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintEnd_toStartOf="@id/gl_ve"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_vs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_ve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Email"
+        android:fontFamily="@font/itim_regular"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintEnd_toStartOf="@id/gl_ve"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="password"
+        android:fontFamily="@font/itim_regular"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintEnd_toStartOf="@id/gl_ve"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="321dp" />
+
+    <TextView
+        android:id="@+id/forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:text="Forgot your password?"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:fontFamily="@font/itim_regular"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/gl_ve"
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_login_enabled"
+        app:backgroundTint="@null"
+        android:textSize="20sp"
+        android:fontFamily="@font/itim_regular"
+        app:layout_constraintEnd_toStartOf="@id/gl_ve"
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintTop_toBottomOf="@+id/forget_password"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="541dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
