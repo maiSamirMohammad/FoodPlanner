@@ -14,7 +14,7 @@
         android:fontFamily="@font/itim_regular"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="#437843"
 
         app:layout_constraintStart_toStartOf="@+id/gl_vs"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -102,9 +102,9 @@
         android:layout_marginTop="46dp"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:background="@drawable/btn_login_enabled"
-        app:backgroundTint="@null"
+        app:backgroundTint="#C1E1C1"
         android:textSize="20sp"
         android:fontFamily="@font/itim_regular"
         app:layout_constraintEnd_toStartOf="@id/gl_ve"
@@ -112,4 +112,8 @@
         app:layout_constraintTop_toBottomOf="@+id/forget_password"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="541dp" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
