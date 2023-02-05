@@ -30,6 +30,7 @@ public class LeadingActivity extends AppCompatActivity {
                     replaceFragment(new FavoriteFragment());
                     break;
                 case R.id.nav_calender:
+                    replaceFragment(new CalendarFragment());
                     break;
                 case R.id.nav_profile:
                     break;
