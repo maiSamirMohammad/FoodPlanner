@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class StartScreen extends AppCompatActivity {
+public class StartScreenActivity extends AppCompatActivity {
 
     private Button loginBtn, signupBtn, skipBtn;
     @Override
@@ -28,7 +28,7 @@ public class StartScreen extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartScreen.this, LoginActivity.class);
+                Intent intent = new Intent(StartScreenActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -36,7 +36,7 @@ public class StartScreen extends AppCompatActivity {
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartScreen.this, SignUpActivity.class);
+                Intent intent = new Intent(StartScreenActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +44,7 @@ public class StartScreen extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartScreen.this, LeadingActivity.class);
+                Intent intent = new Intent(StartScreenActivity.this, LeadingActivity.class);
                 startActivity(intent);
             }
         });
