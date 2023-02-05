@@ -15,7 +15,7 @@ public class StartScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
         initializeVariables();
-        setViewbyId();
+        setListeners();
     }
     private void initializeVariables()
     {
@@ -23,7 +23,7 @@ public class StartScreenActivity extends AppCompatActivity {
         signupBtn = findViewById(R.id.btn_start_signup);
         skipBtn =  findViewById(R.id.btn_start_skip);
     }
-    private void setViewbyId()
+    private void setListeners()
     {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

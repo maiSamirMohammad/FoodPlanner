@@ -25,6 +25,7 @@ public class LeadingActivity extends AppCompatActivity {
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.nav_search:
+                    replaceFragment(new SearchFragment());
                     break;
                 case R.id.nav_favorite:
                     replaceFragment(new FavoriteFragment());
