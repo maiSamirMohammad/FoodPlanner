@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,16 +10,54 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_vertical_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Favorite Fragment"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_vertical_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_horizontal_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_horizontal_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_favorite"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/gl_horizontal_top"
+        app:layout_constraintBottom_toBottomOf="@id/gl_horizontal_bottom"
+        app:layout_constraintEnd_toEndOf="@id/gl_vertical_end"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/gl_vertical_start"
+        />
+
+    <TextView
+        android:id="@+id/my_favorite_dishes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/itim_regular"
+        android:text="My favorite dishes"
+        android:textColor="#437843"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

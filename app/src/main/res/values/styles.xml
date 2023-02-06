@@ -7,9 +7,5 @@
         <item name="color">@color/white</item>
     </style>
 
-    <style name="CustomTabStyle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">9sp</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
+
 </resources>
