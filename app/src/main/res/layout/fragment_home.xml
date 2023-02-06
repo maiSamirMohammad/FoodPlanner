@@ -50,15 +50,13 @@
         android:id="@+id/daily_inspiration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Daily inspiration"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_top"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/itim_regular"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="33dp" />
+        android:text="Daily inspiration"
+        android:textColor="#437843"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
