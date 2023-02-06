@@ -35,6 +35,7 @@ public class LeadingActivity extends AppCompatActivity {
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.nav_search:
+                    replaceFragment(new SearchFragment());
                     break;
                 case R.id.nav_favorite:
                     signupForMore();
@@ -42,7 +43,8 @@ public class LeadingActivity extends AppCompatActivity {
                     break;
 
                 case R.id.nav_calender:
-                    signupForMore();
+                    replaceFragment(new CalendarFragment());
+                    //signupForMore();
                     break;
                 case R.id.nav_profile:
                     signupForMore();

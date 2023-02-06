@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchFragment">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:shadowColor="#C1E1C1"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="15"
+            android:text="Search By"
+            android:textColor="#437843"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_search_by_area"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="#fff"
+            android:text="Area"
+            android:textAllCaps="false"
+            android:textColor="#437843"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_search_by_category"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="#fff"
+            android:text="Category"
+            android:textAllCaps="false"
+            android:textColor="#437843"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_search_by_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="#fff"
+            android:text="Ingredient"
+            android:textAllCaps="false"
+            android:textColor="#437843"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_search_by_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="#fff"
+            android:text="Name"
+            android:textAllCaps="false"
+            android:textColor="#437843"
+            android:textSize="20sp" />
+
+
+
+        <Button
+            android:id="@+id/btn_search_by_first"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="#fff"
+            android:textAllCaps="false"
+            android:text="First Letter"
+            android:textColor="#437843"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
