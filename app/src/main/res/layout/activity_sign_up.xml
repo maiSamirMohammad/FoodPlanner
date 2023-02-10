@@ -10,9 +10,10 @@
         android:id="@+id/et_signup_person_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/display_name"
         android:autofillHints="username"
+        android:ems="10"
+        android:fontFamily="@font/itim_regular"
+        android:hint="@string/display_name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/et_signup_email"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -23,9 +24,10 @@
         android:id="@+id/et_signup_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/email"
         android:autofillHints="emailAddress"
+        android:ems="10"
+        android:fontFamily="@font/itim_regular"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/et_signup_password"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -37,6 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/itim_regular"
         android:hint="@string/password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
@@ -47,9 +50,10 @@
 
     <Button
         android:id="@+id/btn_signup_signup"
+        style="@style/buttons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/green"
+        android:background="@drawable/rounded_background"
         android:text="@string/sign_up"
         app:layout_constraintBottom_toTopOf="@+id/tv_signup_login"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -57,35 +61,32 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_middle" />
 
+    <Button
+        android:id="@+id/btn_signup_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/homeAsUpIndicator"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
     <TextView
         android:id="@+id/tv_signup_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/itim_regular"
         android:onClick="onClick"
         android:text="@string/already_have_an_account_log_in"
         android:textColor="@color/green_text"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_start_google"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/btn_signup_signup" />
 
-    <ImageButton
-        android:id="@+id/btn_start_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:contentDescription="@string/content_description_google"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_login"
-        app:layout_constraintVertical_bias="0.833"
-        app:srcCompat="@drawable/google_icon" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_under_title"
@@ -132,11 +133,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/itim_regular"
         android:text="@string/sign_up"
         android:textColor="@color/green_text"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline_under_title"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/guideline_top" />
+        app:layout_constraintStart_toEndOf="@+id/btn_signup_back"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_top"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,5 +7,14 @@
         <item name="color">@color/white</item>
     </style>
 
+    <style name="buttons">
+        <item name="backgroundTint">@color/green</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/itim_regular</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:layout_marginEnd">25dp</item>
+    </style>
 
 </resources>
