@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.foodplanner.signup.view.SignUpActivity;
+
 public class StartScreenActivity extends AppCompatActivity {
 
     private Button loginBtn, signupBtn, skipBtn;
