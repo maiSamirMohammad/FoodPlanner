@@ -14,4 +14,5 @@
     <string name="instructions">Instructions</string>
     <string name="country">Country</string>
     <string name="name_of_meal">Name of Meal</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

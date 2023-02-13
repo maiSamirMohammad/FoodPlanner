@@ -9,11 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
+import com.example.foodplanner.signup.view.SignUpActivity;
 
 public class LeadingActivity extends AppCompatActivity {
     ActivityLeadingBinding binding;
