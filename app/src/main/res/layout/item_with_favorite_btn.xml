@@ -11,8 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/green">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/dish_image"
@@ -53,13 +52,13 @@
             android:id="@+id/dish_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
             android:fontFamily="@font/itim_regular"
-            android:textColor="@color/black"
+            android:maxLines="2"
+            android:textColor="@color/green_text"
             android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/dish_image"
             app:layout_constraintStart_toStartOf="@+id/dish_image"

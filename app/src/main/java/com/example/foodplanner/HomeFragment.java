@@ -1,73 +1,104 @@
 package com.example.foodplanner;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import com.example.foodplanner.models.SimpleMeal;
+import com.example.foodplanner.models.MealList;
+import com.example.foodplanner.network.RetrofitClient;
+import com.example.foodplanner.network.RetrofitInterface;
+import com.example.foodplanner.view.MealAdapter;
+import com.example.foodplanner.view.OnMealClick;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.Random;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class HomeFragment extends Fragment implements OnMealClick {
+    private RecyclerView recyclerViewFirst;
+    private RecyclerView recyclerViewSecond;
+    private MealAdapter adapter;
+    private ArrayList<SimpleMeal> simpleMeals;
+    private String[] randomCountries;
+    private String[] randomCategories;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Retrofit retrofitClient = RetrofitClient.getClient();
+        RetrofitInterface retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+        initializeVariables(view);
+        //setListeners();
+        apiFirstCall(retrofitInterface);
+        apiSecondCall(retrofitInterface);
+    }
+
+    private void initializeVariables(View view)
+    {
+        recyclerViewFirst = view.findViewById(R.id.recycler_view_home);
+        recyclerViewSecond = view.findViewById(R.id.recycler_view_home2);
+        randomCategories = new String[]{"Beef","Breakfast","Chicken","Dessert","Goat","Lamb","Miscellaneous","Pasta","Pork","Seafood","Side","Starter","Vegan","Vegetarian"};
+        randomCountries = new String[]{"American","British","Canadian","Chinese","Croatian","Dutch","Egyptian","French","Greek","Indian","Irish","Italian","Jamaican","Japanese","Kenyan","Malaysian","Mexican","Moroccan","Polish","Portuguese","Russian","Spanish","Thai","Tunisian","Turkish","Unknown","Vietnamese"};
+    }
+
+    private void apiFirstCall(RetrofitInterface retrofitInterface)
+    {
+        //        Call<MealList> callFirst = retrofitInterface.getFilteredMealsCountries(randomCountries[new Random().nextInt(randomCountries.length)]);
+        Call<MealList> callFirst = retrofitInterface.getFilteredMealsCategories(randomCategories[new Random().nextInt(randomCategories.length)]);
+        callFirst.enqueue(new Callback<MealList>() {
+            @Override
+            public void onResponse(Call<MealList> call, Response<MealList> response) {
+                if (response.isSuccessful()) {
+                    simpleMeals = response.body().getMeals();
+                    recyclerViewFirst.setHasFixedSize(true);
+                    adapter = new MealAdapter(simpleMeals, HomeFragment.this);
+                    recyclerViewFirst.setAdapter(adapter);
+                }
+            }
+            @Override
+            public void onFailure(Call<MealList> call, Throwable t) {
+
+            }
+        });
+    }
+    private void apiSecondCall(RetrofitInterface retrofitInterface)
+    {
+        Call<MealList> callSecond = retrofitInterface.getFilteredMealsCountries(randomCountries[new Random().nextInt(randomCountries.length)]);
+        callSecond.enqueue(new Callback<MealList>() {
+            @Override
+            public void onResponse(Call<MealList> call, Response<MealList> response) {
+                if (response.isSuccessful()) {
+                    simpleMeals = response.body().getMeals();
+                    adapter = new MealAdapter(simpleMeals, HomeFragment.this);
+                    recyclerViewSecond.setAdapter(adapter);
+                }
+            }
+            @Override
+            public void onFailure(Call<MealList> call, Throwable t) {
+
+            }
+        });
+    }
+    private void setListeners()
+    {
 //        icon.setOnCheckedChangeListener((buttonView, isChecked) ->{
 //            if (isChecked){
 //                Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_LONG).show();
@@ -75,5 +106,9 @@ public class HomeFragment extends Fragment {
 //                Toast.makeText(getApplicationContext(),"bye bye",Toast.LENGTH_LONG).show();
 //            }
 //        } );
+    }
+
+    @Override
+    public void onClickIndex(int position) {
     }
 }

@@ -10,21 +10,21 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
         android:fontFamily="@font/itim_regular"
+        android:text="Log In"
+        android:textColor="@color/green_text"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="#437843"
-
-        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintStart_toEndOf="@+id/btn_login_back"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
     <TextView
         android:id="@+id/welcome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/itim_regular"
-        android:text="Welcome back! You're just a step away from a delicious dish :)"
+        android:text="@string/welcome_login"
         android:textSize="20sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/gl_vs"
@@ -56,8 +56,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
         android:fontFamily="@font/itim_regular"
         android:layout_marginTop="26dp"
         app:layout_constraintStart_toStartOf="@+id/gl_vs"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="password"
+        android:hint="@string/password"
         android:fontFamily="@font/itim_regular"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/gl_vs"
@@ -86,34 +86,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
-        android:text="Forgot your password?"
+        android:text="@string/forgot_your_password"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:fontFamily="@font/itim_regular"
         android:textSize="16sp"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onClick"
+
         app:layout_constraintEnd_toStartOf="@id/gl_ve"
         app:layout_constraintStart_toStartOf="@+id/gl_vs"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:background="@drawable/btn_login_enabled"
-        app:backgroundTint="#C1E1C1"
-        android:textSize="20sp"
-        android:fontFamily="@font/itim_regular"
+        android:text="@string/login"
+        style="@style/buttons"
+        android:background="@drawable/rounded_background"
         app:layout_constraintEnd_toStartOf="@id/gl_ve"
         app:layout_constraintStart_toStartOf="@+id/gl_vs"
         app:layout_constraintTop_toBottomOf="@+id/forget_password"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="541dp" />
 
-
+    <Button
+        android:id="@+id/btn_login_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/homeAsUpIndicator"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/gl_vs"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

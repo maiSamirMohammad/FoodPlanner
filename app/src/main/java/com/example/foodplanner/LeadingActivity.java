@@ -9,11 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
+import com.example.foodplanner.signup.view.SignUpActivity;
 
 public class LeadingActivity extends AppCompatActivity {
     ActivityLeadingBinding binding;
@@ -22,15 +20,15 @@ public class LeadingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityLeadingBinding.inflate(getLayoutInflater());
+        binding = ActivityLeadingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-         builder=new AlertDialog.Builder(this);
+        builder = new AlertDialog.Builder(this);
 
         replaceFragment(new HomeFragment());
 
-        binding.bottomNavigationBar.setOnItemSelectedListener(item ->{
-            switch (item.getItemId()){
+        binding.bottomNavigationBar.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
                 case R.id.nav_home:
                     replaceFragment(new HomeFragment());
                     break;
@@ -38,8 +36,8 @@ public class LeadingActivity extends AppCompatActivity {
                     replaceFragment(new SearchFragment());
                     break;
                 case R.id.nav_favorite:
-                    signupForMore();
-                   // replaceFragment(new FavoriteFragment());
+                    replaceFragment(new FavoriteFragment());
+                    //signupForMore();
                     break;
 
                 case R.id.nav_calender:
@@ -50,23 +48,20 @@ public class LeadingActivity extends AppCompatActivity {
                     signupForMore();
                     break;
             }
-
-
             return true;
         });
 
 
     }
 
-
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container,fragment);
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
 
-    public void signupForMore(){
+    public void signupForMore() {
         builder.setTitle("Sign up for more features!")
                 .setMessage("Save your favorite dishes \n and plan your meals")
                 .setCancelable(true)
@@ -81,12 +76,8 @@ public class LeadingActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-
                     }
                 })
                 .show();
-
     }
-
-
 }
