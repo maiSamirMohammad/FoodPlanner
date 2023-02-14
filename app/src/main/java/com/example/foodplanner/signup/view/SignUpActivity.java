@@ -29,12 +29,10 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
                     "(?=.*[a-zA-Z])" +      //any letter
-                    ".{6,}" +               //at least 6 characters
+                    ".{8,}" +               //at least 8 characters
                     "$");
     private TextInputLayout textInputUsername ,textInputEmail,textInputPassword,textInputConfirmPassword;
     private ProgressBar progressBar;
-
-
     private SignUpPresenterInterface signUpPresenterInterface;
 
 
@@ -176,7 +174,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
             textInputPassword.setError("Field can't be empty");
             return false;
         } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            textInputPassword.setError("Password should be at least 6 characters including(digits and letters) in English");
+            textInputPassword.setError("Password should be at least 8 characters including(digits and letters) in English");
             return false;
         } else {
             textInputPassword.setError(null);
@@ -203,8 +201,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
     public void confirmInput(View v) {
         if (validateEmail() & validateUsername() & validatePassword() & validateConfirmPassword()) {
             progressBar.setVisibility(View.VISIBLE);
-//            Toast.makeText(this, "input" +
-//                    textInputUsername.getEditText().getText().toString(), Toast.LENGTH_LONG).show();
+
             Log.i("TAGTAGTAG", "confirmInput: " + textInputUsername.getEditText().getText().toString());
 
             registerUser(textInputUsername.getEditText().getText().toString(),
@@ -225,8 +222,6 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
 
     @Override
     public void onSuccessRegistrationView() {
-        signUpPresenterInterface.onSuccessRegistration();
-        progressBar= findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
         Intent intent = new Intent(SignUpActivity.this, LeadingActivity.class);
         startActivity(intent);
@@ -235,8 +230,6 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
 
     @Override
     public void onFailureRegistrationView(@NonNull Task<AuthResult> task) {
-        task=signUpPresenterInterface.onFailureRegistration();
-        progressBar= findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
         Toast.makeText(this, (task.getException()).getMessage(), Toast.LENGTH_LONG).show();
         Log.i("TAGonFailureRegistration", "onFailureRegistration: "+task.getException().getMessage());
