@@ -40,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+       // android.content.Context context=getApplicationContext();
         //initialize ui
         textInputUsername = findViewById(R.id.til_signup_person_name);
         textInputEmail = findViewById(R.id.til_signup_email);
@@ -49,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
 
 
         //create presenter obj
-        signUpPresenterInterface = new SignUpPresenter(this, Repository.getInstance());
+        signUpPresenterInterface = new SignUpPresenter(this, Repository.getInstance(getApplicationContext()));
 
 
         //textWatcher to observe user input... is it empty?

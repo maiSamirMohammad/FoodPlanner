@@ -1,34 +1,51 @@
 package com.example.foodplanner.signup.model;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 
+import com.example.foodplanner.signup.network.LogOutResult;
 import com.example.foodplanner.signup.network.SignUpResult;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Repository implements RepositoryInterface {
-
-
+    private Context context;
     private FirebaseAuth mAuth;
+    private  SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    public static final String PREFS_NAME="my_preferences";
 
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
+    }
 
     private static Repository repo = null;
 
-    public static Repository getInstance() {
+    public static Repository getInstance(Context _context) {
         if (repo == null) {
-            repo = new Repository();
+            repo = new Repository(_context);
         }
+
         return repo;
     }
 
-    private Repository() {
+    private Repository(Context _context) {
+        context=_context;
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        sharedPreferences = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
 
 
     }
@@ -42,8 +59,14 @@ public class Repository implements RepositoryInterface {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            signUpResult.onSuccessRegistration();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
 
+                                String userID = user.getUid();
+                                editor.putString("userID", userID);
+                                editor.commit();
+                                signUpResult.onSuccessRegistration();
+                            }
                         } else {
                             signUpResult.onFailureRegistration(task);
 
@@ -51,6 +74,20 @@ public class Repository implements RepositoryInterface {
                         }
                     }
                 });
+
+    }
+
+    @Override
+    public void logoutCurrentUser(LogOutResult logOutResult) {
+        try {
+            mAuth.signOut();
+            editor.putString("userID", null);
+            editor.commit();
+            logOutResult.onSuccessLogOut();
+        }catch (Exception exception){
+            logOutResult.onFailureLogOut(exception);
+        }
+
 
     }
 
