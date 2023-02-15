@@ -1,4 +1,4 @@
-package com.example.foodplanner.signup.network;
+package com.example.foodplanner.network;
 
 
 

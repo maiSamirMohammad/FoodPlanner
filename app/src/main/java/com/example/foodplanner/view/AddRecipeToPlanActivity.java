@@ -1,8 +1,10 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.foodplanner.R;
 
 public class AddRecipeToPlanActivity extends AppCompatActivity {
 

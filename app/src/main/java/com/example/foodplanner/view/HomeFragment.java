@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.MealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
-import com.example.foodplanner.view.MealAdapter;
-import com.example.foodplanner.view.OnMealClick;
 
 import java.util.ArrayList;
 import java.util.Random;

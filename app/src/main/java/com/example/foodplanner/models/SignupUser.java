@@ -1,4 +1,4 @@
-package com.example.foodplanner.signup.model;
+package com.example.foodplanner.models;
 
 public class SignupUser {
     private String displayName;

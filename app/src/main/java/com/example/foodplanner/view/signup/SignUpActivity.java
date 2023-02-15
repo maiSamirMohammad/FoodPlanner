@@ -1,4 +1,4 @@
-package com.example.foodplanner.signup.view;
+package com.example.foodplanner.view.signup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +13,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.foodplanner.LeadingActivity;
+import com.example.foodplanner.view.LeadingActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.signup.model.Repository;
-import com.example.foodplanner.signup.presenter.SignUpPresenter;
-import com.example.foodplanner.signup.presenter.SignUpPresenterInterface;
+import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.presenter.FirebasePresenter;
+import com.example.foodplanner.presenter.FirebasePresenterInterface;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -33,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
                     "$");
     private TextInputLayout textInputUsername ,textInputEmail,textInputPassword,textInputConfirmPassword;
     private ProgressBar progressBar;
-    private SignUpPresenterInterface signUpPresenterInterface;
+    private FirebasePresenterInterface firebasePresenterInterface;
 
 
     @Override
@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
 
 
         //create presenter obj
-        signUpPresenterInterface = new SignUpPresenter(this, Repository.getInstance(getApplicationContext()));
+        firebasePresenterInterface = new FirebasePresenter(this, FirebaseFirebaseRepository.getInstance(getApplicationContext()));
 
 
         //textWatcher to observe user input... is it empty?
@@ -217,7 +217,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
 
     @Override
     public void registerUser(String disPlayName, String email, String password, String confirmPassword) {
-        signUpPresenterInterface.registerUser(disPlayName, email, password, confirmPassword);
+        firebasePresenterInterface.registerUser(disPlayName, email, password, confirmPassword);
 
     }
 

@@ -16,19 +16,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.foodplanner.LeadingActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.StartScreenActivity;
-import com.example.foodplanner.signup.model.Repository;
-import com.example.foodplanner.signup.presenter.SignUpPresenter;
-import com.example.foodplanner.signup.presenter.SignUpPresenterInterface;
-import com.example.foodplanner.signup.view.SignUpActivity;
-
-import java.util.Objects;
+import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.presenter.FirebasePresenter;
+import com.example.foodplanner.presenter.FirebasePresenterInterface;
 
 public class ProfileFragment extends Fragment implements ProfileFragmentInterface {
     AlertDialog.Builder builder;
-    SignUpPresenterInterface signUpPresenterInterface;
+    FirebasePresenterInterface firebasePresenterInterface;
     private ProgressBar progressBar;
 
     Button btnLogout;
@@ -51,7 +46,7 @@ public class ProfileFragment extends Fragment implements ProfileFragmentInterfac
 
         progressBar= view.findViewById(R.id.progress_bar);
 
-        signUpPresenterInterface = new SignUpPresenter(this, Repository.getInstance(requireContext()));
+        firebasePresenterInterface = new FirebasePresenter(this, FirebaseFirebaseRepository.getInstance(requireContext()));
 
         builder = new AlertDialog.Builder(requireContext());
         btnLogout=view.findViewById(R.id.btn_logout);
@@ -66,7 +61,7 @@ public class ProfileFragment extends Fragment implements ProfileFragmentInterfac
 
     @Override
     public void logoutCurrentUser() {
-        signUpPresenterInterface.logoutCurrentUser();
+        firebasePresenterInterface.logoutCurrentUser();
     }
 
     @Override
