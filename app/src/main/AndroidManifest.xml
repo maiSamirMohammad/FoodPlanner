@@ -13,26 +13,26 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".AddRecipeToPlanActivity"
+            android:name=".view.AddRecipeToPlanActivity"
             android:exported="false" />
         <activity
-            android:name=".LeadingActivity"
+            android:name=".view.LeadingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".signup.view.SignUpActivity"
+            android:name=".view.signup.SignUpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartScreenActivity"
+            android:name=".view.StartScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
