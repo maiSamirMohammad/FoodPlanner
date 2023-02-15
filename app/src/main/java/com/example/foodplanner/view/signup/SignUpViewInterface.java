@@ -1,8 +1,7 @@
-package com.example.foodplanner.signup.view;
+package com.example.foodplanner.view.signup;
 
 import androidx.annotation.NonNull;
 
-import com.example.foodplanner.signup.model.SignupUser;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 

@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +10,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
-import com.example.foodplanner.signup.model.Repository;
-import com.example.foodplanner.signup.view.SignUpActivity;
-import com.example.foodplanner.view.ProfileFragment;
+import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.view.signup.SignUpActivity;
 
 public class LeadingActivity extends AppCompatActivity {
     ActivityLeadingBinding binding;
@@ -24,7 +24,7 @@ public class LeadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLeadingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        String userID= Repository.getInstance(this).getSharedPreferences().getString("userID",null);
+        String userID= FirebaseFirebaseRepository.getInstance(this).getSharedPreferences().getString("userID",null);
 
 
         builder = new AlertDialog.Builder(this);

@@ -1,41 +1,41 @@
-package com.example.foodplanner.signup.presenter;
+package com.example.foodplanner.presenter;
 
 import androidx.annotation.NonNull;
 
-import com.example.foodplanner.signup.model.RepositoryInterface;
-import com.example.foodplanner.signup.model.SignupUser;
-import com.example.foodplanner.signup.network.LogOutResult;
-import com.example.foodplanner.signup.network.SignUpResult;
-import com.example.foodplanner.signup.view.SignUpViewInterface;
+import com.example.foodplanner.models.FirebaseRepositoryInterface;
+import com.example.foodplanner.models.SignupUser;
+import com.example.foodplanner.network.LogOutResult;
+import com.example.foodplanner.network.SignUpResult;
+import com.example.foodplanner.view.signup.SignUpViewInterface;
 import com.example.foodplanner.view.ProfileFragmentInterface;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
-public class SignUpPresenter implements SignUpPresenterInterface, SignUpResult , LogOutResult {
+public class FirebasePresenter implements FirebasePresenterInterface, SignUpResult , LogOutResult {
     SignUpViewInterface signUpViewInterface;
-    RepositoryInterface repositoryInterface;
+    FirebaseRepositoryInterface firebaseRepositoryInterface;
     ProfileFragmentInterface profileFragmentInterface;
 
-    public SignUpPresenter(SignUpViewInterface signUpViewInterface, RepositoryInterface repositoryInterface) {
+    public FirebasePresenter(SignUpViewInterface signUpViewInterface, FirebaseRepositoryInterface firebaseRepositoryInterface) {
         this.signUpViewInterface= signUpViewInterface;
-        this.repositoryInterface= repositoryInterface;
+        this.firebaseRepositoryInterface = firebaseRepositoryInterface;
     }
-    public SignUpPresenter(ProfileFragmentInterface profileFragmentInterface, RepositoryInterface repositoryInterface) {
+    public FirebasePresenter(ProfileFragmentInterface profileFragmentInterface, FirebaseRepositoryInterface firebaseRepositoryInterface) {
         this.profileFragmentInterface= profileFragmentInterface;
-        this.repositoryInterface= repositoryInterface;
+        this.firebaseRepositoryInterface = firebaseRepositoryInterface;
     }
 
 
 
     @Override
     public void registerUser(String disPlayName,String email,String password,String confirmPassword) {
-        repositoryInterface.registerUser(this,new SignupUser(disPlayName,email,password,confirmPassword));
+        firebaseRepositoryInterface.registerUser(this,new SignupUser(disPlayName,email,password,confirmPassword));
 
     }
 
     @Override
     public void logoutCurrentUser() {
-        repositoryInterface.logoutCurrentUser(this);
+        firebaseRepositoryInterface.logoutCurrentUser(this);
     }
 
     @Override
