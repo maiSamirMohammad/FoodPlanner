@@ -7,9 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.foodplanner.signup.model.Repository;
 import com.example.foodplanner.signup.view.SignUpActivity;
 
 public class StartScreenActivity extends AppCompatActivity {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String userID=Repository.getInstance(this).getSharedPreferences().getString("userID",null);
+        if(userID!=null){
+            Intent intent = new Intent(StartScreenActivity.this, LeadingActivity.class);
+            startActivity(intent);
+        }
+
+
+    }
 
     private Button loginBtn, signupBtn, skipBtn;
     @Override
