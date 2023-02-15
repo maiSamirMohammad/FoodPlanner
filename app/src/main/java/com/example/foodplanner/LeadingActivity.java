@@ -11,7 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
+import com.example.foodplanner.signup.model.Repository;
 import com.example.foodplanner.signup.view.SignUpActivity;
+import com.example.foodplanner.view.ProfileFragment;
 
 public class LeadingActivity extends AppCompatActivity {
     ActivityLeadingBinding binding;
@@ -22,6 +24,8 @@ public class LeadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLeadingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        String userID= Repository.getInstance(this).getSharedPreferences().getString("userID",null);
+
 
         builder = new AlertDialog.Builder(this);
 
@@ -36,16 +40,26 @@ public class LeadingActivity extends AppCompatActivity {
                     replaceFragment(new SearchFragment());
                     break;
                 case R.id.nav_favorite:
-                    replaceFragment(new FavoriteFragment());
-                    //signupForMore();
+                    if(userID!=null){
+                        replaceFragment(new FavoriteFragment());
+                    }else {
+                        signupForMore();
+                    }
                     break;
 
                 case R.id.nav_calender:
-                    replaceFragment(new CalendarFragment());
-                    //signupForMore();
+                    if(userID!=null){
+                        replaceFragment(new CalendarFragment());
+                    }else {
+                        signupForMore();
+                    }
                     break;
                 case R.id.nav_profile:
+                    if(userID!=null){
+                        replaceFragment(new ProfileFragment());
+                    }else {
                     signupForMore();
+                    }
                     break;
             }
             return true;
