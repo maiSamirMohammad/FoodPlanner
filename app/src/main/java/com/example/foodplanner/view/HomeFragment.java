@@ -1,9 +1,14 @@
 package com.example.foodplanner.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +20,10 @@ import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.MealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
+import com.example.foodplanner.view.meal.MealAdapter;
+import com.example.foodplanner.view.meal.MealBigAdapter;
+import com.example.foodplanner.view.meal.OnMealClick;
+import com.example.foodplanner.view.meal.viewDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,6 +37,7 @@ public class HomeFragment extends Fragment implements OnMealClick {
     private RecyclerView recyclerViewFirst;
     private RecyclerView recyclerViewSecond;
     private MealAdapter adapter;
+    private MealBigAdapter adapterBig;
     private ArrayList<SimpleMeal> simpleMeals;
     private String[] randomCountries;
     private String[] randomCategories;
@@ -60,16 +70,15 @@ public class HomeFragment extends Fragment implements OnMealClick {
 
     private void apiFirstCall(RetrofitInterface retrofitInterface)
     {
-        //        Call<MealList> callFirst = retrofitInterface.getFilteredMealsCountries(randomCountries[new Random().nextInt(randomCountries.length)]);
-        Call<MealList> callFirst = retrofitInterface.getFilteredMealsCategories(randomCategories[new Random().nextInt(randomCategories.length)]);
+        Call<MealList> callFirst = retrofitInterface.getRandomMeal();
         callFirst.enqueue(new Callback<MealList>() {
             @Override
             public void onResponse(Call<MealList> call, Response<MealList> response) {
                 if (response.isSuccessful()) {
                     simpleMeals = response.body().getMeals();
                     recyclerViewFirst.setHasFixedSize(true);
-                    adapter = new MealAdapter(simpleMeals, HomeFragment.this);
-                    recyclerViewFirst.setAdapter(adapter);
+                    adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this);
+                    recyclerViewFirst.setAdapter(adapterBig);
                 }
             }
             @Override
@@ -80,7 +89,7 @@ public class HomeFragment extends Fragment implements OnMealClick {
     }
     private void apiSecondCall(RetrofitInterface retrofitInterface)
     {
-        Call<MealList> callSecond = retrofitInterface.getFilteredMealsCountries(randomCountries[new Random().nextInt(randomCountries.length)]);
+        Call<MealList> callSecond = retrofitInterface.getFilteredMealsCategories(randomCategories[new Random().nextInt(randomCategories.length)]);
         callSecond.enqueue(new Callback<MealList>() {
             @Override
             public void onResponse(Call<MealList> call, Response<MealList> response) {
@@ -109,5 +118,8 @@ public class HomeFragment extends Fragment implements OnMealClick {
 
     @Override
     public void onClickIndex(int position) {
+        Toast.makeText(getContext(), "HomeFragment", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), viewDetailsActivity.class);
+        startActivity(intent);
     }
 }

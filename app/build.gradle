@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -69,4 +70,7 @@ dependencies {
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
     //loggin
     implementation"com.squareup.okhttp3:logging-interceptor:4.7.2"
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
 }

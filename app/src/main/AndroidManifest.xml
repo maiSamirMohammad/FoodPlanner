@@ -14,11 +14,21 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ParticularAreaMealActivity"
+
+            android:name=".view.search.ParticularAreaMealActivity"
             android:exported="false" />
         <activity
             android:name=".view.search.AllAreasActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.StartScreenActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.meal.viewDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".view.AddRecipeToPlanActivity"
             android:exported="false" />
@@ -39,8 +49,9 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.StartScreenActivity"
+            android:name=".view.SplashScreen"
             android:exported="true"
+            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

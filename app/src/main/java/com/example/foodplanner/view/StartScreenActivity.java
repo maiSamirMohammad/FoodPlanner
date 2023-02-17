@@ -15,11 +15,7 @@ public class StartScreenActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String userID= FirebaseFirebaseRepository.getInstance(this).getSharedPreferences().getString("userID",null);
-        if(userID!=null){
-            Intent intent = new Intent(StartScreenActivity.this, LeadingActivity.class);
-            startActivity(intent);
-        }
+
 
 
     }
