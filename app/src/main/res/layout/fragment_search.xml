@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SearchFragment">
+    tools:context=".view.search.SearchFragment">
 
 
 
@@ -26,7 +26,8 @@
             android:shadowRadius="15"
             android:text="Search By"
             android:textColor="#437843"
-            android:textSize="33sp"
+            android:fontFamily="@font/itim_regular"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
         <Button
@@ -37,11 +38,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_background"
             android:text="Area"
             android:textAllCaps="false"
             android:textColor="#437843"
-            android:textSize="20sp" />
+            android:textSize="24sp"
+            android:fontFamily="@font/itim_regular"
+            />
 
         <Button
             android:id="@+id/btn_search_by_category"
@@ -51,11 +54,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_background"
             android:text="Category"
             android:textAllCaps="false"
             android:textColor="#437843"
-            android:textSize="20sp" />
+            android:textSize="24sp"
+            android:fontFamily="@font/itim_regular" />
 
         <Button
             android:id="@+id/btn_search_by_ingredient"
@@ -65,41 +69,13 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_background"
             android:text="Ingredient"
             android:textAllCaps="false"
             android:textColor="#437843"
-            android:textSize="20sp" />
+            android:textSize="24sp"
+            android:fontFamily="@font/itim_regular"/>
 
-        <Button
-            android:id="@+id/btn_search_by_name"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="#fff"
-            android:text="Name"
-            android:textAllCaps="false"
-            android:textColor="#437843"
-            android:textSize="20sp" />
-
-
-
-        <Button
-            android:id="@+id/btn_search_by_first"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="#fff"
-            android:textAllCaps="false"
-            android:text="First Letter"
-            android:textColor="#437843"
-            android:textSize="20sp" />
 
     </LinearLayout>
 
