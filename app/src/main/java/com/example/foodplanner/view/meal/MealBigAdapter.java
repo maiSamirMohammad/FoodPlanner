@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.view.meal;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +15,11 @@ import com.example.foodplanner.models.SimpleMeal;
 
 import java.util.ArrayList;
 
-public class MealAdapter extends RecyclerView.Adapter<MealAdapter.Holder> {
+public class MealBigAdapter extends RecyclerView.Adapter<MealBigAdapter.Holder> {
     private final ArrayList<SimpleMeal> simpleMealList;
     private final OnMealClick listOnClickItem;
 
-    public MealAdapter(ArrayList<SimpleMeal> simpleMealList, OnMealClick listOnClickItem) {
+    public MealBigAdapter(ArrayList<SimpleMeal> simpleMealList, OnMealClick listOnClickItem) {
         this.simpleMealList = simpleMealList;
         this.listOnClickItem = listOnClickItem;
     }
@@ -27,7 +27,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.Holder> {
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_with_favorite_btn, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_large, parent, false);
         return new Holder(view);
     }
 

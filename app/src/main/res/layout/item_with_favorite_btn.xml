@@ -65,6 +65,15 @@
             app:layout_constraintTop_toBottomOf="@id/guideline"
             tools:text="Sushi" />
 
+        <TextView
+            android:id="@+id/dish_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"

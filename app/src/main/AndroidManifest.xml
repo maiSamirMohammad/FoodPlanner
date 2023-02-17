@@ -18,6 +18,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".view.meal.viewDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.AddRecipeToPlanActivity"
             android:exported="false" />
         <activity
@@ -39,6 +43,7 @@
         <activity
             android:name=".view.SplashScreen"
             android:exported="true"
+            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

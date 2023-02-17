@@ -1,9 +1,14 @@
 package com.example.foodplanner.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +20,10 @@ import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.MealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
+import com.example.foodplanner.view.meal.MealAdapter;
+import com.example.foodplanner.view.meal.MealBigAdapter;
+import com.example.foodplanner.view.meal.OnMealClick;
+import com.example.foodplanner.view.meal.viewDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -109,5 +118,8 @@ public class HomeFragment extends Fragment implements OnMealClick {
 
     @Override
     public void onClickIndex(int position) {
+        Toast.makeText(getContext(), "HomeFragment", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), viewDetailsActivity.class);
+        startActivity(intent);
     }
 }
