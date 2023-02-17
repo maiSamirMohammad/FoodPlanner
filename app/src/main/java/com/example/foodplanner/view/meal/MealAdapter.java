@@ -36,7 +36,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.Holder> {
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         SimpleMeal simpleMeal = simpleMealList.get(position);
         holder.meal_name_tv.setText(simpleMeal.getStrMeal());
-        holder.meal_id_tv.setText(Long.toString(simpleMeal.getIdMeal()));
+        holder.meal_id_tv.setText(String.valueOf(simpleMeal.getIdMeal()));
         Glide.with(holder.meal_photo.getContext()).load(simpleMeal.getStrMealThumb()).into(holder.meal_photo);
     }
 
@@ -61,9 +61,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.Holder> {
                 public void onClick(View view) {
                     if (listOnClickItem != null)
                     {
-                        Toast.makeText(view.getContext(), "From MealAdapter\n" + meal_id_tv.getText().toString()
-                                + "\n" + meal_name_tv.getText().toString(), Toast.LENGTH_LONG).show();
-                        listOnClickItem.onClickIndex(getLayoutPosition());
+                        listOnClickItem.onClickIndex(meal_id_tv.getText().toString());
                     }
                 }
             });

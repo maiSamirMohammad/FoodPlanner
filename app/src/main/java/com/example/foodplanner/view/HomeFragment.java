@@ -117,9 +117,10 @@ public class HomeFragment extends Fragment implements OnMealClick {
     }
 
     @Override
-    public void onClickIndex(int position) {
-        Toast.makeText(getContext(), "HomeFragment", Toast.LENGTH_SHORT).show();
+    public void onClickIndex(String position) {
+        Toast.makeText(getContext(), "HomeFragment " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), viewDetailsActivity.class);
+        intent.putExtra("mealid", position);
         startActivity(intent);
     }
 }

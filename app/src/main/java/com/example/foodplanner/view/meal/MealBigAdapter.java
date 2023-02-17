@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,7 @@ public class MealBigAdapter extends RecyclerView.Adapter<MealBigAdapter.Holder> 
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         SimpleMeal simpleMeal = simpleMealList.get(position);
         holder.meal_name_tv.setText(simpleMeal.getStrMeal());
+        holder.meal_id_tv.setText(String.valueOf(simpleMeal.getIdMeal()));
         Glide.with(holder.meal_photo.getContext()).load(simpleMeal.getStrMealThumb()).into(holder.meal_photo);
     }
 
@@ -45,17 +47,27 @@ public class MealBigAdapter extends RecyclerView.Adapter<MealBigAdapter.Holder> 
 
     public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView meal_photo;
-        public TextView meal_name_tv;
+        public TextView meal_name_tv, meal_id_tv;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
             meal_photo = itemView.findViewById(R.id.dish_image);
             meal_name_tv = itemView.findViewById(R.id.dish_name);
+            meal_id_tv = itemView.findViewById(R.id.dish_id);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listOnClickItem != null)
+                    {
+                        listOnClickItem.onClickIndex(meal_id_tv.getText().toString());
+                    }
+                }
+            });
         }
 
         @Override
         public void onClick(View view) {
-            listOnClickItem.onClickIndex(getAdapterPosition());
         }
     }
 }
