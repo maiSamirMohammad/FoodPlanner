@@ -13,6 +13,7 @@ import android.os.Bundle;
 import com.example.foodplanner.R;
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.view.search.SearchFragment;
 import com.example.foodplanner.view.signup.SignUpActivity;
 
 public class LeadingActivity extends AppCompatActivity {
