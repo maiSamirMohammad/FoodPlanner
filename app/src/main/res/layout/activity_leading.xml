@@ -50,7 +50,7 @@
      app:itemTextColor="#437843"
      />
 
-    <androidx.fragment.app.FragmentContainerView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_container"
         android:name="com.example.foodplanner.view.HomeFragment"
         android:layout_width="match_parent"

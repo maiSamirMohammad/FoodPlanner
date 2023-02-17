@@ -62,7 +62,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.Holder> {
                     if (listOnClickItem != null)
                     {
                         Toast.makeText(view.getContext(), "From MealAdapter\n" + meal_id_tv.getText().toString()
-                                + "\n" + meal_name_tv.getText().toString(), Toast.LENGTH_SHORT).show();
+                                + "\n" + meal_name_tv.getText().toString(), Toast.LENGTH_LONG).show();
                         listOnClickItem.onClickIndex(getLayoutPosition());
                     }
                 }
