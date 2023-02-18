@@ -127,25 +127,11 @@
         android:text="@string/already_have_an_account_log_in"
         android:textColor="@color/green_text"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_start_google"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signup_signup" />
-
-    <ImageButton
-        android:id="@+id/btn_start_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:contentDescription="@string/content_description_google"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_login"
-        app:layout_constraintVertical_bias="0.833"
-        app:srcCompat="@drawable/google_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_signup_signup" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_under_title"
