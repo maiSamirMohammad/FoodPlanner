@@ -1,5 +1,7 @@
 package com.example.foodplanner.network;
 
+import com.example.foodplanner.models.DetailedMeal;
+import com.example.foodplanner.models.DetailedMealList;
 import com.example.foodplanner.models.MealList;
 
 import io.reactivex.rxjava3.core.Single;
@@ -16,6 +18,10 @@ public interface RetrofitInterface {
 
     @GET("filter.php")
     Call<MealList> getFilteredMealsCategories(@Query("c") String category);
+
+    @GET("lookup.php")
+    Call<DetailedMealList> getDetailedMeal(@Query("i") String detailedMeal);
+
 
 //    @GET("categories.php")
 //    Single<MealList> getAllCategories();
