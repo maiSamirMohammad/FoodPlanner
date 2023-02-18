@@ -50,16 +50,16 @@
         android:textStyle="bold"
 
         app:layout_constraintBottom_toTopOf="@id/gl_horizontal_top"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@id/gl_vertical_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/green_transparent_background"
-        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_top"
         app:layout_constraintEnd_toStartOf="@id/gl_vertical_end"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close_30" />

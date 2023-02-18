@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.foodplanner.R;
@@ -22,7 +23,7 @@ public class AllAreasActivity extends AppCompatActivity implements AllAreasActiv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_areas);
 
-        recyclerView=(RecyclerView) findViewById(R.id.rv_areas);
+        recyclerView=findViewById(R.id.rv_areas);
         layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -33,5 +34,13 @@ public class AllAreasActivity extends AppCompatActivity implements AllAreasActiv
     @Override
     public Area[] getAreas() {
         return new SearchPresenter().getAreas();
+    }
+
+    @Override
+    public void navigateToParticularAreaMeal(String areaName) {
+        Intent intent = new Intent(this, ParticularAreaMealActivity.class);
+        intent.putExtra("areaName",areaName);
+        startActivity(intent);
+
     }
 }
