@@ -14,7 +14,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-
+            android:name=".view.search.ParticularCategoryMealsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.search.AllCategoriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.search.ParticularAreaMealActivity"
             android:exported="false" />
         <activity
@@ -28,7 +33,6 @@
             android:name=".view.meal.viewDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".view.AddRecipeToPlanActivity"
             android:exported="false" />

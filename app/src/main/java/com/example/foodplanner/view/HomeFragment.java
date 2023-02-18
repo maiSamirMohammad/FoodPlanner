@@ -20,6 +20,7 @@ import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.MealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
+import com.example.foodplanner.presenter.ParticularAreaMealPresenter;
 import com.example.foodplanner.view.meal.MealAdapter;
 import com.example.foodplanner.view.meal.MealBigAdapter;
 import com.example.foodplanner.view.meal.OnMealClick;
@@ -28,6 +29,9 @@ import com.example.foodplanner.view.meal.viewDetailsActivity;
 import java.util.ArrayList;
 import java.util.Random;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,40 +74,40 @@ public class HomeFragment extends Fragment implements OnMealClick {
 
     private void apiFirstCall(RetrofitInterface retrofitInterface)
     {
-        Call<MealList> callFirst = retrofitInterface.getRandomMeal();
-        callFirst.enqueue(new Callback<MealList>() {
-            @Override
-            public void onResponse(Call<MealList> call, Response<MealList> response) {
-                if (response.isSuccessful()) {
-                    simpleMeals = response.body().getMeals();
-                    recyclerViewFirst.setHasFixedSize(true);
-                    adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this);
-                    recyclerViewFirst.setAdapter(adapterBig);
-                }
-            }
-            @Override
-            public void onFailure(Call<MealList> call, Throwable t) {
+        Observable<MealList> callFirst = retrofitInterface.getRandomMeal();
 
-            }
-        });
+
+        callFirst.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        myResponse -> {
+                            simpleMeals = myResponse.getMeals();
+                            recyclerViewFirst.setHasFixedSize(true);
+                            adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this);
+                            recyclerViewFirst.setAdapter(adapterBig);
+
+                        },
+                        error->{
+
+                        }
+                );
     }
     private void apiSecondCall(RetrofitInterface retrofitInterface)
     {
-        Call<MealList> callSecond = retrofitInterface.getFilteredMealsCategories(randomCategories[new Random().nextInt(randomCategories.length)]);
-        callSecond.enqueue(new Callback<MealList>() {
-            @Override
-            public void onResponse(Call<MealList> call, Response<MealList> response) {
-                if (response.isSuccessful()) {
-                    simpleMeals = response.body().getMeals();
-                    adapter = new MealAdapter(simpleMeals, HomeFragment.this);
-                    recyclerViewSecond.setAdapter(adapter);
-                }
-            }
-            @Override
-            public void onFailure(Call<MealList> call, Throwable t) {
+        Observable<MealList> callSecond = retrofitInterface.getFilteredMealsCategories(randomCategories[new Random().nextInt(randomCategories.length)]);
 
-            }
-        });
+        callSecond.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        myResponse -> {
+                            simpleMeals = myResponse.getMeals();
+                            adapter = new MealAdapter(simpleMeals, HomeFragment.this);
+                            recyclerViewSecond.setAdapter(adapter);
+
+                        },
+                        error->{
+
+                        }
+                );
+
     }
     private void setListeners()
     {
