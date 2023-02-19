@@ -18,5 +18,10 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="calendar">Calendar</string>
+    <string name="profile">Profile</string>
 
 </resources>

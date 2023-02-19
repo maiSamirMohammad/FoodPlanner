@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/row_week_planner"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/white"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/week_planner_img_mealImg"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/test_img"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/week_planner_tv_mealName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/itim_regular"
+        android:text=""
+        android:textSize="14dp"
+        android:inputType="textMultiLine|textImeMultiLine"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintStart_toEndOf="@+id/week_planner_img_mealImg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_removeWeekPlannerItem"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/green_transparent_background"
+        android:elevation="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_close_30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,23 +3,21 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Home"
-        /><item
+        android:title="@string/home" />
+    <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
-        android:title="Search"
-        /><item
+        android:title="@string/search" />
+    <item
         android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_favorite"
-        android:title="Favorite"
-        /><item
+        android:title="@string/favorite" />
+    <item
         android:id="@+id/nav_calender"
         android:icon="@drawable/ic_calender"
-        android:title="Calender"
-        /><item
+        android:title="@string/calendar" />
+    <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
-        android:title="Profile"
-        />
-
+        android:title="@string/profile" />
 </menu>

@@ -108,7 +108,6 @@
             android:layout_margin="8dp"
             android:drawableStart="@drawable/ic_calender"
             android:text=" Add to calender"
-
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
