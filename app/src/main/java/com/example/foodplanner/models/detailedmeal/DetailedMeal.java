@@ -1,4 +1,4 @@
-package com.example.foodplanner.models;
+package com.example.foodplanner.models.detailedmeal;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

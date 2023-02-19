@@ -1,12 +1,10 @@
 package com.example.foodplanner.network;
 
-import com.example.foodplanner.models.DetailedMeal;
-import com.example.foodplanner.models.DetailedMealList;
+import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 import com.example.foodplanner.models.MealList;
+import com.example.foodplanner.models.detailedmeal.DetailedMealList;
 
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -21,7 +19,7 @@ public interface RetrofitInterface {
     Observable<MealList> getFilteredMealsCategories(@Query("c") String category);
 
     @GET("lookup.php")
-    Call<DetailedMealList> getDetailedMeal(@Query("i") String detailedMeal);
+    Observable<DetailedMealList> getDetailedMeal(@Query("i") String detailedMeal);
 
 
 //    @GET("categories.php")
