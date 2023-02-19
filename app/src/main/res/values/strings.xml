@@ -17,4 +17,6 @@
     <string name="welcome_login">Welcome back! You are just a step away from a delicious dish :)</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
+
 </resources>

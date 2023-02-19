@@ -22,6 +22,7 @@ public class AllCategoriesActivity extends AppCompatActivity implements AllCateg
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_categories);
+
         recyclerView=findViewById(R.id.rv_categories);
         layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);

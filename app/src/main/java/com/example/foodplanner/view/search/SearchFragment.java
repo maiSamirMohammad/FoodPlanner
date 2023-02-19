@@ -16,7 +16,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.view.StartScreenActivity;
 
 public class SearchFragment extends Fragment {
-    Button btnSearchByArea , btnSearchByCategory;
+    Button btnSearchByArea , btnSearchByCategory,btnSearchByIngredient;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_search, container, false);
@@ -28,6 +28,7 @@ public class SearchFragment extends Fragment {
 
         btnSearchByArea= view.findViewById(R.id.btn_search_by_area);
         btnSearchByCategory= view.findViewById(R.id.btn_search_by_category);
+        btnSearchByIngredient= view.findViewById(R.id.btn_search_by_ingredient);
 
         btnSearchByArea.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,13 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(requireContext(), AllCategoriesActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnSearchByIngredient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), AllIngredientsActivity.class);
                 startActivity(intent);
             }
         });
