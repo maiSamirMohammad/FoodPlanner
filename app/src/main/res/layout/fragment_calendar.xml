@@ -5,29 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
+    android:fillViewport="true"
     tools:context=".view.CalendarFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <CalendarView
             android:id="@+id/simpleCalendarView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/rv_calendar"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toTopOf="@+id/guideline_top" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_calendar"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/simpleCalendarView"
-            app:spanCount="2" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_top"
