@@ -1,18 +1,20 @@
 package com.example.foodplanner.view;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.foodplanner.R;
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.utility.InternetChecker;
 import com.example.foodplanner.view.search.SearchFragment;
 import com.example.foodplanner.view.signup.SignUpActivity;
 
@@ -26,10 +28,9 @@ public class LeadingActivity extends AppCompatActivity {
         binding = ActivityLeadingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String userID= FirebaseFirebaseRepository.getInstance(this).getSharedPreferences().getString("userID",null);
-
-
         builder = new AlertDialog.Builder(this);
 
+//        checkConnection();
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationBar.setOnItemSelectedListener(item -> {
@@ -94,5 +95,15 @@ public class LeadingActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+    private void checkConnection()
+    {
+        new InternetChecker(this).observeForever(isConnected -> {
+            if (isConnected) {
+                Toast.makeText(this, "Internet Is Connected", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Internet Is not Connected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

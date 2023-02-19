@@ -2,32 +2,46 @@ package com.example.foodplanner.utility;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 
-public class InternetChecker {
-        private Context context;
-        public InternetChecker instance = null;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
-        private InternetChecker() {
-        }
+public class InternetChecker extends LiveData<Boolean> {
+    private ConnectivityManager connectivityManager;
+    public InternetChecker(Context context) {
+        connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    }
 
-        public InternetChecker getInstance(Context contextInput) {
-            if (instance == null) {
-                context = contextInput;
-                instance = new InternetChecker();
+    private ConnectivityManager.NetworkCallback getNetworkCallback() {
+        return new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(@NonNull Network network) {
+                super.onAvailable(network);
+                postValue(true);
             }
-            return instance;
-        }
-        public InternetChecker getInstance() {
-            if (instance == null) {
-                instance = new InternetChecker();
+            @Override
+            public void onLost(@NonNull Network network) {
+                super.onLost(network);
+                postValue(false);
             }
-            return instance;
-        }
+        };
+    }
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        public Boolean checkIfInternetIsConnected() {
-            return ((connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                    connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED));
+    @Override
+    protected void onInactive() {
+        super.onInactive();
+        try {
+            connectivityManager.unregisterNetworkCallback(getNetworkCallback());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onActive() {
+        super.onActive();
+        connectivityManager.registerDefaultNetworkCallback(getNetworkCallback());
+    }
 }
