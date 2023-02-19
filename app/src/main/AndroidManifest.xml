@@ -36,7 +36,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.meal.viewDetailsActivity"
+            android:name=".view.mealdetails.ViewDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

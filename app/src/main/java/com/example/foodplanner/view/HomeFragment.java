@@ -1,6 +1,9 @@
 package com.example.foodplanner.view;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +27,7 @@ import com.example.foodplanner.presenter.ParticularAreaMealPresenter;
 import com.example.foodplanner.view.meal.MealAdapter;
 import com.example.foodplanner.view.meal.MealBigAdapter;
 import com.example.foodplanner.view.meal.OnMealClick;
-import com.example.foodplanner.view.meal.viewDetailsActivity;
+import com.example.foodplanner.view.mealdetails.ViewDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -45,6 +48,8 @@ public class HomeFragment extends Fragment implements OnMealClick {
     private ArrayList<SimpleMeal> simpleMeals;
     private String[] randomCountries;
     private String[] randomCategories;
+    Retrofit retrofitClient;
+    RetrofitInterface retrofitInterface;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,24 +60,23 @@ public class HomeFragment extends Fragment implements OnMealClick {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Retrofit retrofitClient = RetrofitClient.getClient();
-        RetrofitInterface retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+        retrofitClient = RetrofitClient.getClient();
+        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
         initializeVariables(view);
         //setListeners();
-        apiFirstCall(retrofitInterface);
-        apiSecondCall(retrofitInterface);
+        apiFirstCall();
+        apiSecondCall();
     }
 
     private void initializeVariables(View view)
     {
         recyclerViewFirst = view.findViewById(R.id.recycler_view_home);
         recyclerViewSecond = view.findViewById(R.id.recycler_view_home2);
-        randomCategories = new String[]{"Beef","Breakfast","Chicken","Dessert","Goat","Lamb","Miscellaneous","Pasta","Pork","Seafood","Side","Starter","Vegan","Vegetarian"};
-        randomCountries = new String[]{"American","British","Canadian","Chinese","Croatian","Dutch","Egyptian","French","Greek","Indian","Irish","Italian","Jamaican","Japanese","Kenyan","Malaysian","Mexican","Moroccan","Polish","Portuguese","Russian","Spanish","Thai","Tunisian","Turkish","Unknown","Vietnamese"};
+        randomCategories = new String[]{"Beef","Chicken","Dessert","Lamb","Miscellaneous","Pork","Seafood","Side","Vegetarian"};
     }
 
-    private void apiFirstCall(RetrofitInterface retrofitInterface)
+    private void apiFirstCall()
     {
         Observable<MealList> callFirst = retrofitInterface.getRandomMeal();
 
@@ -84,14 +88,13 @@ public class HomeFragment extends Fragment implements OnMealClick {
                             recyclerViewFirst.setHasFixedSize(true);
                             adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this);
                             recyclerViewFirst.setAdapter(adapterBig);
-
                         },
                         error->{
-
+                            error.printStackTrace();
                         }
                 );
     }
-    private void apiSecondCall(RetrofitInterface retrofitInterface)
+    private void apiSecondCall()
     {
         Observable<MealList> callSecond = retrofitInterface.getFilteredMealsCategories(randomCategories[new Random().nextInt(randomCategories.length)]);
 
@@ -101,13 +104,11 @@ public class HomeFragment extends Fragment implements OnMealClick {
                             simpleMeals = myResponse.getMeals();
                             adapter = new MealAdapter(simpleMeals, HomeFragment.this);
                             recyclerViewSecond.setAdapter(adapter);
-
                         },
                         error->{
-
+                            error.printStackTrace();
                         }
                 );
-
     }
     private void setListeners()
     {
@@ -120,10 +121,15 @@ public class HomeFragment extends Fragment implements OnMealClick {
 //        } );
     }
 
-    @Override
-    public void onClickIndex(int position) {
-        Toast.makeText(getContext(), "HomeFragment", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getContext(), viewDetailsActivity.class);
+    public void onClickIndex(String position) {
+        SharedPreferences sharedPreferences;
+        SharedPreferences.Editor editor;
+        sharedPreferences = getContext().getSharedPreferences("my_preferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("mealcurrentid", position);
+        editor.apply();
+
+        Intent intent = new Intent(getContext(), ViewDetailsActivity.class);
         startActivity(intent);
     }
 }
