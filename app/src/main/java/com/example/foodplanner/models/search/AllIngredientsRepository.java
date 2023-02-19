@@ -35,7 +35,6 @@ public class AllIngredientsRepository {
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
         ingredientArrayList -> {
-                            Log.i("TAGTAGTAGTAGTAGTAGTAG", "getAllIngredients: "+ingredientArrayList);
             AllIngredientPresenter.onSuccessResult(ingredientArrayList.getMeals());
 
 

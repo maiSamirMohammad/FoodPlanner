@@ -1,5 +1,6 @@
 package com.example.foodplanner.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,6 +9,7 @@ import androidx.room.PrimaryKey;
 public class SimpleMeal {
     @PrimaryKey
     @ColumnInfo(name = "idMeal")
+    @NonNull
     private Long idMeal;
     @ColumnInfo(name = "strMeal")
     private String strMeal;

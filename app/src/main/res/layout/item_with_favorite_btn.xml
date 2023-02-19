@@ -27,27 +27,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/RoundCorner"
             tools:src="@drawable/test_img" />
-        <View
-            android:id="@+id/black_background"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@drawable/black_transparent_background"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="@id/dish_image"
-            app:layout_constraintTop_toTopOf="@id/dish_image"/>
-
-        <CheckBox
-            android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/sl_favourite_24dp"
-            app:buttonTint="@android:color/white"
-
-            app:layout_constraintBottom_toBottomOf="@+id/black_background"
-            app:layout_constraintEnd_toEndOf="@+id/black_background"
-            app:layout_constraintStart_toStartOf="@+id/black_background"
-            app:layout_constraintTop_toTopOf="@+id/black_background" />
 
         <TextView
             android:id="@+id/dish_name"

@@ -40,9 +40,6 @@ public class ParticularCategoryAdapter  extends RecyclerView.Adapter<ParticularC
         Log.i(TAG, "onBindViewHolder: ");
         SimpleMeal current = meals.get(position);
         holder.meal_name_tv.setText(current.getStrMeal());
-        holder.meal_id_tv.setText(Long.toString(current.getIdMeal()));
-       // Glide.with(holder.meal_photo.getContext()).load(current.getStrMealThumb()).into(holder.meal_photo);
-
                 Glide.with(holder.meal_photo.getContext())
                 .load(current.getStrMealThumb())
                 .placeholder(R.drawable.loading_animation)

@@ -5,13 +5,9 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +19,7 @@ import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.MealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
-import com.example.foodplanner.presenter.ParticularAreaMealPresenter;
+import com.example.foodplanner.presenter.FavoritePresenter;
 import com.example.foodplanner.view.meal.MealAdapter;
 import com.example.foodplanner.view.meal.MealBigAdapter;
 import com.example.foodplanner.view.meal.OnMealClick;
@@ -35,12 +31,9 @@ import java.util.Random;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class HomeFragment extends Fragment implements OnMealClick {
+public class HomeFragment extends Fragment implements OnMealClick,AddToFavoriteViewInterface {
     private RecyclerView recyclerViewFirst;
     private RecyclerView recyclerViewSecond;
     private MealAdapter adapter;
@@ -86,7 +79,7 @@ public class HomeFragment extends Fragment implements OnMealClick {
                         myResponse -> {
                             simpleMeals = myResponse.getMeals();
                             recyclerViewFirst.setHasFixedSize(true);
-                            adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this);
+                            adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this,this);
                             recyclerViewFirst.setAdapter(adapterBig);
                         },
                         error->{
@@ -131,5 +124,11 @@ public class HomeFragment extends Fragment implements OnMealClick {
 
         Intent intent = new Intent(getContext(), ViewDetailsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void addMeal(SimpleMeal meal) {
+        FavoritePresenter.addMeal(meal,requireContext());
+
     }
 }
