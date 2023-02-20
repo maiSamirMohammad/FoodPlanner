@@ -139,7 +139,7 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
         holder.recyclerViewIngredients.setAdapter( holder.mealDetailsIngredientsAdapter);
 
         //getLifecycle().addObserver((LifecycleObserver) holder.mealVideo);
-        if (detailedMeal.getStrYoutube() != null) {
+        if (!detailedMeal.getStrYoutube().isEmpty() && !detailedMeal.getStrYoutube().equals("")&& detailedMeal.getStrYoutube() != null)  {
             String[] split = detailedMeal.getStrYoutube().split("=");
             holder.mealVideo.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                 @Override
