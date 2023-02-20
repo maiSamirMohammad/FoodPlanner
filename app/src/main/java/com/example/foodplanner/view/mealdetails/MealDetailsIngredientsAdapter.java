@@ -5,13 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.detailedmeal.IngredientWithMeasure;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDetailsIngredientsAdapter.ViewHolder> {
     ArrayList<IngredientWithMeasure> ingredientWithMeasures;
@@ -30,13 +33,9 @@ public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDeta
 
     @Override
     public void onBindViewHolder(@NonNull MealDetailsIngredientsAdapter.ViewHolder holder, int position) {
-        holder.textViewIngredientMeasure.setText(ingredientWithMeasures.get(position).getIngredientMeasure());
-        holder.textViewIngredientName.setText(ingredientWithMeasures.get(position).getIngredientName());
-        Glide.with(holder.view.getContext())
-                .load(holder.view.getContext().getString(R.string.ingredient_img, ingredientWithMeasures.get(position).getIngredientName()))
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image)
-                .into(holder.imageViewIngredient);
+        holder.getTextViewIngredientMeasure().setText(ingredientWithMeasures.get(position).getIngredientMeasure());
+        holder.getTextViewIngredientName().setText(ingredientWithMeasures.get(position).getIngredientName());
+        Glide.with(holder.getView().getContext()).load("https://www.themealdb.com/images/ingredients/" + ingredientWithMeasures.get(position).getIngredientName() + "-Small.png").placeholder(R.drawable.breakfast).error(R.drawable.ic_broken_image).into(holder.getRoundedImageView());
 
 
     }
@@ -52,9 +51,9 @@ public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDeta
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-         TextView textViewIngredientName;
-         TextView textViewIngredientMeasure;
-         ImageView imageViewIngredient;
+        private final TextView textViewIngredientName;
+        private final TextView textViewIngredientMeasure;
+        private final ImageView roundedImageView;
         View view;
 
 
@@ -64,11 +63,24 @@ public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDeta
 
             textViewIngredientMeasure = itemView.findViewById(R.id.textViewIngredientMeasureItem);
 
-            imageViewIngredient = itemView.findViewById(R.id.imageViewIngredientImageItem_mealDetails);
+            roundedImageView = itemView.findViewById(R.id.imageViewIngredientImageItem_mealDetails);
             view = itemView;
         }
 
+        public TextView getTextViewIngredientName() {
+            return textViewIngredientName;
+        }
 
+        public TextView getTextViewIngredientMeasure() {
+            return textViewIngredientMeasure;
+        }
 
+        public ImageView getRoundedImageView() {
+            return roundedImageView;
+        }
+
+        public View getView() {
+            return view;
+        }
     }
 }
