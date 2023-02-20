@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +28,7 @@ import com.example.foodplanner.view.LoginActivity;
 import com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface;
 import com.example.foodplanner.view.FavoriteFragment;
 
+import com.example.foodplanner.view.search.adapter.CategoryAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -44,9 +46,7 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
     MealDetailsInterface mealDetailsInterface;
 
 
-//    public MealDetailsAdapter(ArrayList<DetailedMeal> detailedMealsList) {
-//        this.detailedMealsList = detailedMealsList;
-//        this.mealDetailsInterface = mealDetailsInterface;
+
 
     public MealDetailsAdapter(ArrayList<DetailedMeal> detailedMealsList, AddAndRemoveFavoriteViewInterface addAndRemoveFavoriteViewInterface, MealDetailsInterface mealDetailsInterface) {
         this.detailedMealsList = detailedMealsList;
@@ -105,6 +105,8 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
         holder.btn_add_to_calender.setOnClickListener(view -> {
             mealDetailsInterface.navigateToCalendar(detailedMeal.getStrMeal());
         });
+
+        //holder.recyclerViewIngredients
     }
 
     @Override
@@ -120,6 +122,8 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
         CheckBox btnFavorite;
         Button btn_add_to_calender;
         View black_background;
+      //  MealDetailsIngredientsAdapter mealDetailsIngredientsAdapter;
+        LinearLayoutManager layoutManager;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
@@ -132,6 +136,11 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
             btnFavorite = itemView.findViewById(R.id.btn_favorite);
             btn_add_to_calender = itemView.findViewById(R.id.btn_add_to_calender);
             black_background = itemView.findViewById(R.id.black_background);
+            layoutManager=new LinearLayoutManager(recyclerViewIngredients.getContext());
+            layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            recyclerViewIngredients.setLayoutManager(layoutManager);
+//            mealDetailsIngredientsAdapter= new CategoryAdapter(getCategories());
+//            recyclerViewIngredients.setAdapter(mealDetailsIngredientsAdapter);
         }
     }
 }

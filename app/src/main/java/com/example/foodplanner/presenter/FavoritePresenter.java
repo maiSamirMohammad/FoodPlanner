@@ -12,6 +12,10 @@ import com.example.foodplanner.view.FavoriteFragmentInterface;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class FavoritePresenter {
     static FavoriteFragmentInterface favoriteFragment;
 
@@ -20,13 +24,18 @@ public class FavoritePresenter {
     }
     public static void getMeals(LifecycleOwner owner, Context context, FavoriteFragmentInterface favoriteFragmentInterface){
         favoriteFragment=favoriteFragmentInterface;
-        FavoriteRepository.getInstance(context).getAllStoredMeals()
-                .observe(owner, new Observer<List<DetailedMeal>>() {
-            @Override
-            public void onChanged(List<DetailedMeal> meals) {
-                favoriteFragment.showData(meals);
-            }
-        });
+        Observable<List<DetailedMeal>> myFavoriteMeals=FavoriteRepository.getInstance(context).getAllStoredMeals();
+        myFavoriteMeals.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(meals -> {
+                    favoriteFragment.showData(meals);
+                        },
+                        throwable -> {
+                            favoriteFragment.showDataFailed(throwable.getCause().getMessage());
+                        }
+
+                );
+
     }
     public static void removeFromFav(DetailedMeal detailedMeal,Context context){
         FavoriteRepository.getInstance(context).deleteMeal(detailedMeal);
