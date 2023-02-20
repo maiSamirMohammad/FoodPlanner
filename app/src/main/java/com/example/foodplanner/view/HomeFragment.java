@@ -33,7 +33,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class HomeFragment extends Fragment implements OnMealClick,AddToFavoriteViewInterface {
+public class HomeFragment extends Fragment implements OnMealClick {
     private RecyclerView recyclerViewFirst;
     private RecyclerView recyclerViewSecond;
     private MealAdapter adapter;
@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment implements OnMealClick,AddToFavoriteV
                         myResponse -> {
                             simpleMeals = myResponse.getMeals();
                             recyclerViewFirst.setHasFixedSize(true);
-                            adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this,this);
+                            adapterBig = new MealBigAdapter(simpleMeals, HomeFragment.this);
                             recyclerViewFirst.setAdapter(adapterBig);
                         },
                         error->{
@@ -126,9 +126,5 @@ public class HomeFragment extends Fragment implements OnMealClick,AddToFavoriteV
         startActivity(intent);
     }
 
-    @Override
-    public void addMeal(SimpleMeal meal) {
-        FavoritePresenter.addMeal(meal,requireContext());
 
-    }
 }

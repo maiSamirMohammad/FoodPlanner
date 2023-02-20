@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
+import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 import com.example.foodplanner.presenter.FavoritePresenter;
 
 import java.util.ArrayList;
@@ -48,13 +49,13 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentInterf
     }
 
     @Override
-    public void showData(List<SimpleMeal> meals) {
+    public void showData(List<DetailedMeal> meals) {
         favoriteMealsAdapter.setList(meals);
         favoriteMealsAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void removeMeal(SimpleMeal meal) {
+    public void removeMeal(DetailedMeal meal) {
         FavoritePresenter.removeFromFav(meal,requireContext());
     }
 
