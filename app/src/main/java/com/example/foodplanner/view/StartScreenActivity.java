@@ -32,7 +32,7 @@ public class StartScreenActivity extends AppCompatActivity {
     SignInButton googleSignBtn;
     GoogleSignInClient googleSignInClient;
     FirebaseAuth firebaseAuth;
-    String googleClientId = "855439930752-koq2l37aq81ohcicjnr7bj4mklka6c31.apps.googleusercontent.com";
+    String googleClientId = "855439930752-mg03i3irlhoi7afeis8j9qmb5rjfd9ng.apps.googleusercontent.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
