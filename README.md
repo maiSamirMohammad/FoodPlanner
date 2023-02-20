@@ -1,6 +1,6 @@
 Collaborators:
 --------------
-Mai Samir Mohamed
+Mai Samir Mohammad
 &
 Ahmed Salah Ahmed
 
