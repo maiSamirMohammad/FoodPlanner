@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,8 @@ public class StartScreenActivity extends AppCompatActivity {
     SignInButton googleSignBtn;
     GoogleSignInClient googleSignInClient;
     FirebaseAuth firebaseAuth;
+    SharedPreferences.Editor editor;
+    private  SharedPreferences sharedPreferences;
     String googleClientId = "855439930752-mg03i3irlhoi7afeis8j9qmb5rjfd9ng.apps.googleusercontent.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,24 +103,26 @@ public class StartScreenActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
-            Toast.makeText(this, "Entered onActivityResult " + requestCode, Toast.LENGTH_SHORT).show();
             Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
             if (signInAccountTask.isSuccessful()) {
-                Toast.makeText(getApplicationContext(), "Google sign in successful", Toast.LENGTH_SHORT).show();
-                // Initialize sign in account
                 try {
-                    // Initialize sign in account
                     GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
                     if (googleSignInAccount != null) {
-                        // When sign in account is not equal to null initialize auth credential
                         AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
                         firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                // Check condition
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(StartScreenActivity.this, "Firebase authentication successful", Toast.LENGTH_SHORT).show();
-                                    // When task is successful redirect to profile activity display Toast
+                                    Toast.makeText(getApplicationContext(), "Google sign in successful", Toast.LENGTH_SHORT).show();
+
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    String userID = user.getUid();
+                                    sharedPreferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+                                    editor = sharedPreferences.edit();
+                                    editor.putString("userID", userID);
+                                    editor.commit();
+                                    //firebaseFirebaseRepository.registerUserGoogle();
+
                                     startActivity(new Intent(StartScreenActivity.this, LeadingActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 } else {
                                     Toast.makeText(StartScreenActivity.this, "Firebase authentication Failed", Toast.LENGTH_SHORT).show();
