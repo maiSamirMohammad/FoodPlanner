@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/imageViewIngredientImageBGItem"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <ImageView
+        android:id="@+id/imageViewIngredientImageItem_mealDetails"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/test_img"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintStart_toStartOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintTop_toTopOf="@+id/imageViewIngredientImageBGItem"
+         />
+
+    <TextView
+        android:id="@+id/textViewIngredientNameItem_mealDetails"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:maxLines="2"
+        android:fontFamily="@font/itim_regular"
+        android:textAlignment="center"
+        android:textColor="@color/green_text"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintStart_toStartOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewIngredientImageBGItem"
+        tools:text="Apple" />
+
+    <TextView
+        android:id="@+id/textViewIngredientMeasureItem"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/itim_regular"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@color/green_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintStart_toStartOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIngredientNameItem_mealDetails"
+        tools:text="1 sliced" />
+</androidx.constraintlayout.widget.ConstraintLayout>

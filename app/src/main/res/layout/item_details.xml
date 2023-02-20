@@ -2,23 +2,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!--
+                <ImageView
+                    android:id="@+id/iv_details_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/start_background"
+                    android:contentDescription="@string/content_description_pancakes" />
+                -->
 
-        <ImageView
+
+
+          <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_details_food"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:scaleType="centerCrop"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundCorner"
             tools:src="@drawable/start_background"
-            android:contentDescription="@string/content_description_pancakes" />
+            android:contentDescription="@string/content_description_pancakes"/>
 
 
 
@@ -47,22 +63,22 @@
                app:layout_constraintTop_toTopOf="@+id/black_background" />
 
 
-
-
         <TextView
             android:id="@+id/tv_details_name_of_meal"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/name_of_meal"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/itim_regular"
             android:maxLines="2"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="24sp"
+            android:text="@string/name_of_meal"
+            android:textAlignment="center"
             android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@+id/iv_details_food"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/iv_details_food" />
 
         <TextView
             android:id="@+id/tv_details_country"
@@ -71,6 +87,8 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:text="@string/country"
+            android:fontFamily="@font/itim_regular"
+
             android:textSize="24sp"
             android:textAllCaps="false"
             app:layout_constraintTop_toBottomOf="@+id/tv_details_name_of_meal"
@@ -82,6 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
+            android:fontFamily="@font/itim_regular"
+
             android:text="@string/instructions"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:autoPlay="false"
+            android:layout_margin="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +137,8 @@
             android:layout_margin="8dp"
             android:drawableStart="@drawable/ic_calender"
             android:text=" Add to Calendar"
+            android:fontFamily="@font/itim_regular"
+
             android:textAllCaps="false"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

@@ -11,10 +11,12 @@ import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 @Dao
 public interface MealDAO {
     @Query("SELECT * From DetailedMeal")
-    LiveData<List<DetailedMeal>> getAllMeals();
+    Observable<List<DetailedMeal>> getAllMeals();
 
 //    @Query("SELECT * FROM singleMeal WHERE name LIKE :first " + "LIMIT 1")
 //    Movie findMovieByName(String first);

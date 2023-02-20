@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
@@ -52,6 +54,12 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentInterf
     public void showData(List<DetailedMeal> meals) {
         favoriteMealsAdapter.setList(meals);
         favoriteMealsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showDataFailed(String error) {
+        Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
+
     }
 
     @Override

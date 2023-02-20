@@ -8,10 +8,12 @@ import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public class FavoriteRepository {
     private MealDAO dao;
     private static FavoriteRepository favoriteRepository = null;
-    private LiveData<List<DetailedMeal>> storedMeals;
+    private Observable<List<DetailedMeal>> storedMeals;
 
 
     private FavoriteRepository(Context context){
@@ -48,7 +50,7 @@ public class FavoriteRepository {
     }
 
 
-    public LiveData<List<DetailedMeal>> getAllStoredMeals() {
+    public Observable<List<DetailedMeal>> getAllStoredMeals() {
         return storedMeals;
     }
 }
