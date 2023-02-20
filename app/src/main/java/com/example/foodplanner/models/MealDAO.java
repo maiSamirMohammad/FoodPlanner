@@ -7,19 +7,21 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.foodplanner.models.detailedmeal.DetailedMeal;
+
 import java.util.List;
 
 @Dao
 public interface MealDAO {
-    @Query("SELECT * From singleMeal")
-    LiveData<List<SimpleMeal>> getAllMeals();
+    @Query("SELECT * From DetailedMeal")
+    LiveData<List<DetailedMeal>> getAllMeals();
 
 //    @Query("SELECT * FROM singleMeal WHERE name LIKE :first " + "LIMIT 1")
 //    Movie findMovieByName(String first);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertAll(SimpleMeal meal);
+    void insertAll(DetailedMeal meal);
 
     @Delete
-    void delete(SimpleMeal meal);
+    void delete(DetailedMeal meal);
 }

@@ -15,6 +15,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.databinding.ActivityLeadingBinding;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.utility.InternetChecker;
+import com.example.foodplanner.view.calendar.CalendarFragment;
 import com.example.foodplanner.view.search.SearchFragment;
 import com.example.foodplanner.view.signup.SignUpActivity;
 

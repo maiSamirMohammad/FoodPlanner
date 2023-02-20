@@ -19,28 +19,34 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/start_background"
             android:contentDescription="@string/content_description_pancakes" />
-        <View
-            android:id="@+id/black_background"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/black_transparent_background"
-            app:layout_constraintEnd_toEndOf="@id/iv_details_food"
-            app:layout_constraintTop_toTopOf="@id/iv_details_food" />
 
-        <CheckBox
-            android:id="@+id/btn_remove_from_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/sl_favourite_48dp"
 
-            android:layout_marginTop="2dp"
-            app:buttonTint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/black_background"
-            app:layout_constraintEnd_toEndOf="@+id/black_background"
-            app:layout_constraintStart_toStartOf="@+id/black_background"
-            app:layout_constraintTop_toTopOf="@+id/black_background" />
+
+           <View
+               android:id="@+id/black_background"
+               android:layout_width="60dp"
+               android:layout_height="60dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="8dp"
+               android:visibility="gone"
+               android:background="@drawable/black_transparent_background"
+               app:layout_constraintEnd_toEndOf="@id/iv_details_food"
+               app:layout_constraintTop_toTopOf="@id/iv_details_food" />
+
+           <CheckBox
+               android:id="@+id/btn_favorite"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:button="@drawable/sl_favourite_48dp"
+               android:layout_marginTop="2dp"
+               android:visibility="gone"
+               app:buttonTint="@android:color/white"
+               app:layout_constraintBottom_toBottomOf="@+id/black_background"
+               app:layout_constraintEnd_toEndOf="@+id/black_background"
+               app:layout_constraintStart_toStartOf="@+id/black_background"
+               app:layout_constraintTop_toTopOf="@+id/black_background" />
+
+
 
 
         <TextView
@@ -79,7 +85,9 @@
             android:text="@string/instructions"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_calender" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -102,13 +110,14 @@
             app:layout_constraintTop_toBottomOf="@+id/rv_ingredients" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_add_to_calender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:drawableStart="@drawable/ic_calender"
-            android:text=" Add to calender"
+            android:text=" Add to Calendar"
             android:textAllCaps="false"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_details_country" />

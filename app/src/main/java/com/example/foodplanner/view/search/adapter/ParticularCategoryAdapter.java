@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
+import com.example.foodplanner.view.search.ParticularCategoryMealsActivityInterface;
 
 import java.util.ArrayList;
 
@@ -20,9 +21,11 @@ public class ParticularCategoryAdapter  extends RecyclerView.Adapter<ParticularC
     private static final String TAG = "MyAdapter";
 
     ArrayList<SimpleMeal> meals;
+    ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface;
 
-    public ParticularCategoryAdapter(ArrayList<SimpleMeal> meals) {
+    public ParticularCategoryAdapter(ArrayList<SimpleMeal> meals, ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface) {
         this.meals = meals;
+        this.particularCategoryMealsActivityInterface = particularCategoryMealsActivityInterface;
     }
 
 
@@ -45,6 +48,13 @@ public class ParticularCategoryAdapter  extends RecyclerView.Adapter<ParticularC
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image)
                 .into(holder.meal_photo);
+
+        holder.meal_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                particularCategoryMealsActivityInterface.navigateToViewDetails(Long.toString(current.getIdMeal()));
+            }
+        });
     }
 
     @Override

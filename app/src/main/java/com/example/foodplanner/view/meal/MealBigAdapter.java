@@ -3,10 +3,8 @@ package com.example.foodplanner.view.meal;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,19 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
-import com.example.foodplanner.view.AddToFavoriteViewInterface;
+import com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface;
 
 import java.util.ArrayList;
 
 public class MealBigAdapter extends RecyclerView.Adapter<MealBigAdapter.Holder> {
     private final ArrayList<SimpleMeal> simpleMealList;
     private final OnMealClick listOnClickItem;
-    AddToFavoriteViewInterface addToFavoriteViewInterface;
 
-    public MealBigAdapter(ArrayList<SimpleMeal> simpleMealList, OnMealClick listOnClickItem, AddToFavoriteViewInterface addToFavoriteViewInterface) {
+
+    public MealBigAdapter(ArrayList<SimpleMeal> simpleMealList, OnMealClick listOnClickItem) {
         this.simpleMealList = simpleMealList;
         this.listOnClickItem = listOnClickItem;
-        this.addToFavoriteViewInterface = addToFavoriteViewInterface;
     }
 
     @NonNull
@@ -42,12 +39,7 @@ public class MealBigAdapter extends RecyclerView.Adapter<MealBigAdapter.Holder> 
         holder.meal_name_tv.setText(simpleMeal.getStrMeal());
         holder.meal_id_tv.setText(String.valueOf(simpleMeal.getIdMeal()));
         Glide.with(holder.meal_photo.getContext()).load(simpleMeal.getStrMealThumb()).into(holder.meal_photo);
-//        holder.btnAddToFavorite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addToFavoriteViewInterface.addMeal(simpleMeal);
-//            }
-//        });
+
 
     }
 
@@ -59,14 +51,13 @@ public class MealBigAdapter extends RecyclerView.Adapter<MealBigAdapter.Holder> 
     public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView meal_photo;
         public TextView meal_name_tv, meal_id_tv;
-        Button btnAddToFavorite;
+
 
         public Holder(@NonNull View itemView) {
             super(itemView);
             meal_photo = itemView.findViewById(R.id.dish_image);
             meal_name_tv = itemView.findViewById(R.id.dish_name);
             meal_id_tv = itemView.findViewById(R.id.dish_id);
-            //btnAddToFavorite = itemView.findViewById(R.id.btn_add_to_favorite);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

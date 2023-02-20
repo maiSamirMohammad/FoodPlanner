@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
+import com.example.foodplanner.view.search.AllAreasActivityInterface;
+import com.example.foodplanner.view.search.ParticularAreaMealActivityInterface;
 
 import java.util.ArrayList;
 
@@ -19,8 +21,11 @@ public class ParticularAreaAdapter extends RecyclerView.Adapter<ParticularAreaAd
 
     ArrayList<SimpleMeal> meals;
 
-    public ParticularAreaAdapter(ArrayList<SimpleMeal> meals) {
+    ParticularAreaMealActivityInterface particularAreaMealActivityInterface;
+
+    public ParticularAreaAdapter(ArrayList<SimpleMeal> meals, ParticularAreaMealActivityInterface particularAreaMealActivityInterface) {
         this.meals = meals;
+        this.particularAreaMealActivityInterface = particularAreaMealActivityInterface;
     }
 
 
@@ -45,6 +50,14 @@ public class ParticularAreaAdapter extends RecyclerView.Adapter<ParticularAreaAd
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image)
                 .into(holder.meal_photo);
+
+        holder.meal_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                particularAreaMealActivityInterface.navigateToViewDetails(Long.toString(current.getIdMeal()));
+
+            }
+        });
     }
 
     @Override

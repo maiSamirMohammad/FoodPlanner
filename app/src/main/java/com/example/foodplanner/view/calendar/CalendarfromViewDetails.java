@@ -1,43 +1,42 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.view.calendar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.view.mealdetails.ViewDetailsActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
-public class CalendarFragment extends Fragment {
+public class CalendarfromViewDetails extends AppCompatActivity {
     CalendarView simpleCalendarView;
     Date mStartTime, mEndTime;
-
+    Button returnToMeal;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calendarfrom_view_details);
+        returnToMeal = findViewById(R.id.btn_calendar_return);
+        returnToMeal.setOnClickListener(view -> {
+            Intent intent = new Intent(CalendarfromViewDetails.this, ViewDetailsActivity.class);
+            startActivity(intent);
+        });
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        simpleCalendarView = requireView().findViewById(R.id.simpleCalendarView);
+        simpleCalendarView = findViewById(R.id.simpleCalendarView);
         simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // Note that Month starts with 0 not 1
-                Toast.makeText(getContext(), dayOfMonth + "/" + (month+1) + "/" + year, Toast.LENGTH_LONG).show();
+                Toast.makeText(CalendarfromViewDetails.this, dayOfMonth + "/" + (month+1) + "/" + year, Toast.LENGTH_LONG).show();
 
                 String startTime = Integer.toString(year) + "-" + Integer.toString(month + 1) + "-" + Integer.toString(dayOfMonth) + "T09:00:00";
                 String endTime = Integer.toString(year) + "-" + Integer.toString(month + 1) + "-" + Integer.toString(dayOfMonth) + "T12:00:00";
@@ -55,6 +54,7 @@ public class CalendarFragment extends Fragment {
                 mIntent.putExtra("beginTime", mStartTime.getTime());
                 mIntent.putExtra("time", true);
                 mIntent.putExtra("endTime", mEndTime.getTime());
+                mIntent.putExtra("title", FirebaseFirebaseRepository.getInstance(CalendarfromViewDetails.this).getSharedPreferences().getString("mealcurrentname",null));
                 startActivity(mIntent);
             }
         });
