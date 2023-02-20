@@ -73,5 +73,6 @@ dependencies {
     // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     // Google Sign in
+    implementation platform('com.google.firebase:firebase-bom:31.2.2')
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
 }
