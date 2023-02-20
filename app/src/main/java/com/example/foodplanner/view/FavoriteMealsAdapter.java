@@ -16,15 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
+import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 
 import java.util.List;
 
 public class FavoriteMealsAdapter  extends RecyclerView.Adapter<FavoriteMealsAdapter.ViewHolder>{
     private Context context;
-    private List<SimpleMeal> meals;
+    private List<DetailedMeal> meals;
     private FavoriteFragmentInterface favoriteFragmentInterface;
     public static final String TAG = "FavoriteAdapter";
-    public FavoriteMealsAdapter( Context context,List<SimpleMeal> meals,
+    public FavoriteMealsAdapter( Context context,List<DetailedMeal> meals,
                              FavoriteFragmentInterface favoriteFragmentInterface){
         this.context = context;
         this.meals = meals;
@@ -43,7 +44,7 @@ public class FavoriteMealsAdapter  extends RecyclerView.Adapter<FavoriteMealsAda
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        SimpleMeal currentMeal = meals.get(position);
+        DetailedMeal currentMeal = meals.get(position);
         holder.meal_name_tv.setText(currentMeal.getStrMeal());
         Glide.with(holder.meal_photo.getContext())
                 .load(currentMeal.getStrMealThumb())
@@ -65,7 +66,7 @@ public class FavoriteMealsAdapter  extends RecyclerView.Adapter<FavoriteMealsAda
         return meals.size();
     }
 
-    public void setList(List<SimpleMeal> updatedMeals){
+    public void setList(List<DetailedMeal> updatedMeals){
         this.meals = updatedMeals;
     }
 

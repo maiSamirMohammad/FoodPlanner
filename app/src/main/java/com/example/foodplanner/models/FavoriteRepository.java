@@ -4,12 +4,14 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.foodplanner.models.detailedmeal.DetailedMeal;
+
 import java.util.List;
 
 public class FavoriteRepository {
     private MealDAO dao;
     private static FavoriteRepository favoriteRepository = null;
-    private LiveData<List<SimpleMeal>> storedMeals;
+    private LiveData<List<DetailedMeal>> storedMeals;
 
 
     private FavoriteRepository(Context context){
@@ -25,28 +27,28 @@ public class FavoriteRepository {
         return favoriteRepository;
     }
 
-    public  void insertMovie(SimpleMeal meal){
+    public  void insertMeal(DetailedMeal detailedMeal){
         new Thread(new Runnable() {
             @Override
             public void run() {
-                dao.insertAll(meal);
+                dao.insertAll(detailedMeal);
             }
         }).start();
 
     }
 
 
-    public void deleteMeal(SimpleMeal meal) {
+    public void deleteMeal(DetailedMeal detailedMeal) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                dao.delete(meal);
+                dao.delete(detailedMeal);
             }
         }).start();
     }
 
 
-    public LiveData<List<SimpleMeal>> getAllStoredMeals() {
+    public LiveData<List<DetailedMeal>> getAllStoredMeals() {
         return storedMeals;
     }
 }

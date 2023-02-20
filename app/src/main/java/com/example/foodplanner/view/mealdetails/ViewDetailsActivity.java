@@ -14,11 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.models.detailedmeal.DetailedMealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
+import com.example.foodplanner.presenter.FavoritePresenter;
+import com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface;
+import com.example.foodplanner.view.FavoriteFragmentInterface;
 import com.example.foodplanner.view.HomeFragment;
 import com.example.foodplanner.view.meal.MealBigAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -33,12 +37,13 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class ViewDetailsActivity extends AppCompatActivity {
+public class ViewDetailsActivity extends AppCompatActivity implements AddAndRemoveFavoriteViewInterface {
     private RecyclerView recyclerViewDetails;
     private MealDetailsAdapter mealDetailsAdapter;
     String mealId;
     private RetrofitInterface retrofitInterface;
     ArrayList<DetailedMeal> detailedMeals;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,7 +61,7 @@ public class ViewDetailsActivity extends AppCompatActivity {
                         myResponse -> {
                             detailedMeals = myResponse.getMeals();
                             recyclerViewDetails.setHasFixedSize(true);
-                            mealDetailsAdapter = new MealDetailsAdapter(detailedMeals);
+                            mealDetailsAdapter = new MealDetailsAdapter(detailedMeals,this);
                             recyclerViewDetails.setAdapter(mealDetailsAdapter);
                         },
                         error->{
@@ -71,4 +76,14 @@ public class ViewDetailsActivity extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getClient();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
     }
+    @Override
+    public void addMeal(DetailedMeal detailedMeal ) {
+        FavoritePresenter.addMeal(detailedMeal,this);
+
+    }
+    @Override
+    public void removeMeal(DetailedMeal detailedMeal ) {
+        FavoritePresenter.removeFromFav(detailedMeal,this);
+    }
+
 }

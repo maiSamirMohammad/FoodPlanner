@@ -3,6 +3,8 @@ package com.example.foodplanner.view.mealdetails;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
+import com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface;
+import com.example.foodplanner.view.FavoriteFragment;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -21,10 +26,13 @@ import java.util.List;
 
 public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.Holder> {
 
+    AddAndRemoveFavoriteViewInterface addAndRemoveFavoriteViewInterface;
     private final ArrayList<DetailedMeal> detailedMealsList;
 
-    public MealDetailsAdapter(ArrayList<DetailedMeal> detailedMealsList) {
+    public MealDetailsAdapter(ArrayList<DetailedMeal> detailedMealsList, AddAndRemoveFavoriteViewInterface addAndRemoveFavoriteViewInterface) {
         this.detailedMealsList = detailedMealsList;
+        this.addAndRemoveFavoriteViewInterface = addAndRemoveFavoriteViewInterface;
+
     }
 
     @NonNull
@@ -41,6 +49,24 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
         holder.meal_country.setText(detailedMeal.getStrArea());
         holder.meal_instructions.setText(detailedMeal.getStrInstructions());
         Glide.with(holder.meal_photo.getContext()).load(detailedMeal.getStrMealThumb()).into(holder.meal_photo);
+        String userID= FirebaseFirebaseRepository.getInstance(holder.black_background.getContext()).getSharedPreferences().getString("userID",null);
+        if(userID!=null){
+            holder.black_background.setVisibility(View.VISIBLE);
+            holder.btnFavorite.setVisibility(View.VISIBLE);
+            holder.btn_add_to_calender.setVisibility(View.VISIBLE);
+            holder.btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if( holder.btnFavorite.isChecked()){
+                    addAndRemoveFavoriteViewInterface.addMeal(detailedMeal);
+                }else {
+                    addAndRemoveFavoriteViewInterface.removeMeal(detailedMeal);
+
+                }
+
+            }
+        });
+        }
 
         //getLifecycle().addObserver((LifecycleObserver) holder.mealVideo);
         if (detailedMeal.getStrYoutube() != null ) {
@@ -130,6 +156,9 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
         public TextView meal_name_tv, meal_country, meal_instructions;
         private final YouTubePlayerView mealVideo;
         RecyclerView recyclerViewIngredients;
+        CheckBox btnFavorite;
+        Button  btn_add_to_calender;
+        View black_background;
         public Holder(@NonNull View itemView) {
             super(itemView);
             meal_photo = itemView.findViewById(R.id.iv_details_food);
@@ -138,6 +167,9 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
             meal_instructions = itemView.findViewById(R.id.tv_details_instructions);
             mealVideo = itemView.findViewById(R.id.video);
             recyclerViewIngredients = itemView.findViewById(R.id.rv_ingredients);
-            }
+            btnFavorite = itemView.findViewById(R.id.btn_favorite);
+            btn_add_to_calender = itemView.findViewById(R.id.btn_add_to_calender);
+            black_background = itemView.findViewById(R.id.black_background);
+        }
         }
 }
