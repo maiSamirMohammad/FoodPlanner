@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.presenter.ParticularAreaMealPresenter;
+import com.example.foodplanner.view.LoginActivity;
+import com.example.foodplanner.view.mealdetails.ViewDetailsActivity;
 import com.example.foodplanner.view.search.adapter.AreaAdapter;
 import com.example.foodplanner.view.search.adapter.ParticularAreaAdapter;
 
@@ -54,7 +58,7 @@ public class ParticularAreaMealActivity extends AppCompatActivity implements Par
         gridlayoutManager =new GridLayoutManager(this,2);
         gridlayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(gridlayoutManager);
-        particularAreaAdapter= new ParticularAreaAdapter(meals);
+        particularAreaAdapter= new ParticularAreaAdapter(meals,this);
         recyclerView.setAdapter(particularAreaAdapter);
 
     }
@@ -63,5 +67,18 @@ public class ParticularAreaMealActivity extends AppCompatActivity implements Par
     public void onFailureResult(String error) {
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public void navigateToViewDetails(String position) {
+        SharedPreferences sharedPreferences;
+        SharedPreferences.Editor editor;
+        sharedPreferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("mealcurrentid", position);
+        editor.apply();
+
+        Intent intent = new Intent(this, ViewDetailsActivity.class);
+        startActivity(intent);
     }
 }

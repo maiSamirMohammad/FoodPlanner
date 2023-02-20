@@ -1,6 +1,8 @@
 package com.example.foodplanner.view.mealdetails;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +22,8 @@ import com.example.foodplanner.models.detailedmeal.DetailedMealList;
 import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
 import com.example.foodplanner.view.HomeFragment;
+import com.example.foodplanner.view.LoginActivity;
+import com.example.foodplanner.view.calendar.CalendarfromViewDetails;
 import com.example.foodplanner.view.meal.MealBigAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -33,7 +37,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class ViewDetailsActivity extends AppCompatActivity {
+public class ViewDetailsActivity extends AppCompatActivity implements MealDetailsInterface {
     private RecyclerView recyclerViewDetails;
     private MealDetailsAdapter mealDetailsAdapter;
     String mealId;
@@ -56,7 +60,7 @@ public class ViewDetailsActivity extends AppCompatActivity {
                         myResponse -> {
                             detailedMeals = myResponse.getMeals();
                             recyclerViewDetails.setHasFixedSize(true);
-                            mealDetailsAdapter = new MealDetailsAdapter(detailedMeals);
+                            mealDetailsAdapter = new MealDetailsAdapter(detailedMeals, this);
                             recyclerViewDetails.setAdapter(mealDetailsAdapter);
                         },
                         error->{
@@ -70,5 +74,26 @@ public class ViewDetailsActivity extends AppCompatActivity {
         mealId = FirebaseFirebaseRepository.getInstance(this).getSharedPreferences().getString("mealcurrentid",null);
         Retrofit retrofitClient = RetrofitClient.getClient();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+    }
+
+    @Override
+    public void onSuccessResult(DetailedMeal meals) {
+    }
+
+    @Override
+    public void onFailureResult(String error) {
+    }
+
+    @Override
+    public void navigateToCalendar(String meal) {
+        SharedPreferences sharedPreferences;
+        SharedPreferences.Editor editor;
+        sharedPreferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("mealcurrentname", meal);
+        editor.apply();
+
+        Intent intent = new Intent(this, CalendarfromViewDetails.class);
+        startActivity(intent);
     }
 }
