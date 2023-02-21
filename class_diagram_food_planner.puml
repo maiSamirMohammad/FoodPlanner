@@ -1,0 +1,836 @@
+@startuml
+class com.example.foodplanner.view.FavoriteFragment {
+~ RecyclerView favoriteRecyclerView
+~ FavoriteMealsAdapter favoriteMealsAdapter
+~ LinearLayoutManager layoutManager
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
+- void initUI(View)
++ void showData(List<DetailedMeal>)
++ void showDataFailed(String)
++ void removeMeal(DetailedMeal)
+}
+interface com.example.foodplanner.view.meal.OnMealClick {
+~ void onClickIndex(String)
+}
+class com.example.foodplanner.models.search.ParticularAreaMealRepository {
++ {static} String BASE_URL
++ {static} void getParticularAreaMeals(String)
+}
+class com.example.foodplanner.view.LoginActivity {
+# void onCreate(Bundle)
+}
+interface com.example.foodplanner.view.search.ParticularCategoryMealsActivityInterface {
++ void getParticularCategoryMeals(String)
++ void onSuccessResult(ArrayList<SimpleMeal>)
++ void onFailureResult(String)
++ void navigateToViewDetails(String)
+}
+class com.example.foodplanner.presenter.SearchPresenter {
++ Area[] getAreas()
++ Category[] getCategories()
+}
+class com.example.foodplanner.view.SplashScreen {
+- LottieAnimationView lottieAnimationView
+# void onCreate(Bundle)
+}
+class com.example.foodplanner.view.calendar.CalendarfromViewDetails {
+~ CalendarView simpleCalendarView
+~ Date mStartTime
+~ Button returnToMeal
+# void onCreate(Bundle)
+}
+interface com.example.foodplanner.models.MealDAO {
+~ Observable<List<DetailedMeal>> getAllMeals()
+~ void insertAll(DetailedMeal)
+~ void delete(DetailedMeal)
+}
+class com.example.foodplanner.models.SimpleMeal {
+- Long idMeal
+- String strMeal
+- String strMealThumb
++ Long getIdMeal()
++ void setIdMeal(Long)
++ String getStrMeal()
++ void setStrMeal(String)
++ String getStrMealThumb()
++ void setStrMealThumb(String)
+}
+interface com.example.foodplanner.presenter.FirebasePresenterInterface {
++ void registerUser(String,String,String,String)
++ void logoutCurrentUser()
+}
+class com.example.foodplanner.models.search.Category {
+- String categoryName
+- int imageResourceId
++ String getCategoryName()
++ int getImageResourceId()
+}
+class com.example.foodplanner.view.HomeFragment {
+- RecyclerView recyclerViewFirst
+- RecyclerView recyclerViewSecond
+- MealAdapter adapter
+- MealBigAdapter adapterBig
+- ArrayList<SimpleMeal> simpleMeals
+- String[] randomCountries
+- String[] randomCategories
+~ Retrofit retrofitClient
+~ RetrofitInterface retrofitInterface
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
+- void initializeVariables(View)
+- void apiFirstCall()
+- void apiSecondCall()
+- void setListeners()
++ void onClickIndex(String)
+}
+class com.example.foodplanner.models.search.AllCategories {
+- {static} AllCategories allCategories
+- Category[] categories
++ {static} AllCategories getInstance()
++ Category[] getAllCategories()
+}
+interface com.example.foodplanner.network.RetrofitInterface {
+~ Observable<MealList> getRandomMeal()
+~ Observable<MealList> getFilteredMealsCountries(String)
+~ Observable<MealList> getFilteredMealsCategories(String)
+~ Observable<DetailedMealList> getDetailedMeal(String)
+~ Observable<RootIngredients> getIngredient()
+}
+class com.example.foodplanner.models.search.AllIngredientsRepository {
++ {static} String BASE_URL
++ {static} void getAllIngredients()
+}
+class com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter {
+- {static} String TAG
+~ ArrayList<SimpleMeal> meals
+~ ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface
++ ParticularCategoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ParticularCategoryAdapter.MyViewHolder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter.MyViewHolder {
+~ ImageView meal_photo
+~ TextView meal_name_tv
+}
+class com.example.foodplanner.view.search.AllIngredientsActivity {
+~ RecyclerView recyclerView
+~ LinearLayoutManager layoutManager
+~ IngredientAdapter ingredientAdapter
+# void onCreate(Bundle)
++ void getIngredients()
++ void onSuccessResult(ArrayList<Ingredient>)
++ void onFailureResult(String)
++ void navigateToParticularIngredientMeals(String)
+}
+interface com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface {
++ void addMeal(DetailedMeal)
++ void removeMeal(DetailedMeal)
+}
+class com.example.foodplanner.view.search.adapter.CategoryAdapter {
+- {static} String TAG
+~ AllCategoriesActivityInterface allCategoriesActivityInterface
+~ Category[] categories
+~ Context context
++ CategoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CategoryAdapter.MyViewHolder,int)
++ int getItemCount()
++ {static} int calculateInSampleSize(BitmapFactory.Options,int,int)
++ {static} Bitmap decodeSampledBitmapFromResource(Resources,int,int,int)
+}
+class com.example.foodplanner.view.search.adapter.CategoryAdapter.MyViewHolder {
+~ ConstraintLayout wholeItem
+~ TextView name
+~ ImageView photo
+}
+class com.example.foodplanner.view.meal.MealAdapter {
+- ArrayList<SimpleMeal> simpleMealList
+- OnMealClick listOnClickItem
++ Holder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(Holder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.meal.MealAdapter.Holder {
++ ImageView meal_photo
++ TextView meal_name_tv
++ void onClick(View)
+}
+interface com.example.foodplanner.models.FirebaseRepositoryInterface {
++ void registerUser(SignUpResult,SignupUser)
++ void logoutCurrentUser(LogOutResult)
+}
+class com.example.foodplanner.models.detailedmeal.IngredientWithMeasure {
+- String ingredientName
+- String ingredientMeasure
++ String getIngredientName()
++ String getIngredientMeasure()
+}
+class com.example.foodplanner.models.search.AllAreas {
+- {static} AllAreas allAreas
+- Area[] areas
++ {static} AllAreas getInstance()
++ Area[] getAllAreas()
+}
+class com.example.foodplanner.utility.InternetChecker {
+- ConnectivityManager connectivityManager
+- ConnectivityManager.NetworkCallback getNetworkCallback()
+# void onInactive()
+# void onActive()
+}
+class com.example.foodplanner.models.search.ParticularCategoryMealsRepository {
++ {static} String BASE_URL
++ {static} void getParticularCategoryMeals(String)
+}
+class com.example.foodplanner.view.search.ParticularAreaMealActivity {
+~ String areaName
+~ TextView tvArea
+~ RecyclerView recyclerView
+~ GridLayoutManager gridlayoutManager
+~ ParticularAreaAdapter particularAreaAdapter
+# void onCreate(Bundle)
++ void getParticularAreaMeals(String)
++ void onSuccessResult(ArrayList<SimpleMeal>)
++ void onFailureResult(String)
++ void navigateToViewDetails(String)
+}
+class com.example.foodplanner.view.MainActivity {
+~ TextView textView
+# void onCreate(Bundle)
+}
+class com.example.foodplanner.view.search.adapter.ParticularAreaAdapter {
+- {static} String TAG
+~ ArrayList<SimpleMeal> meals
+~ ParticularAreaMealActivityInterface particularAreaMealActivityInterface
++ MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MyViewHolder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.search.adapter.ParticularAreaAdapter.MyViewHolder {
+~ ImageView meal_photo
+~ TextView meal_name_tv
+}
+class com.example.foodplanner.view.LeadingActivity {
+~ ActivityLeadingBinding binding
+~ AlertDialog.Builder builder
+# void onCreate(Bundle)
+- void replaceFragment(Fragment)
++ void signupForMore()
+- void checkConnection()
+}
+class com.example.foodplanner.view.signup.SignUpActivity {
+- {static} Pattern PASSWORD_PATTERN
+- TextInputLayout textInputUsername
+- ProgressBar progressBar
+- FirebasePresenterInterface firebasePresenterInterface
+# void onCreate(Bundle)
+- boolean validateUsername()
+- boolean validateEmail()
+- boolean validatePassword()
+- boolean validateConfirmPassword()
++ void confirmInput(View)
++ void registerUser(String,String,String,String)
++ void onSuccessRegistrationView()
++ void onFailureRegistrationView(Task<AuthResult>)
+}
+class com.example.foodplanner.network.RetrofitClient {
++ {static} String BASE_URL
+- {static} Retrofit retrofit
++ {static} Retrofit getClient()
+}
+interface com.example.foodplanner.network.LogOutResult {
++ void onSuccessLogOut()
++ void onFailureLogOut(Exception)
+}
+class com.example.foodplanner.models.FirebaseFirebaseRepository {
+- Context context
+- FirebaseAuth mAuth
+- SharedPreferences sharedPreferences
+~ SharedPreferences.Editor editor
++ {static} String PREFS_NAME
+- {static} FirebaseFirebaseRepository repo
++ SharedPreferences getSharedPreferences()
++ {static} FirebaseFirebaseRepository getInstance(Context)
++ void registerUser(SignUpResult,SignupUser)
++ void logoutCurrentUser(LogOutResult)
+}
+class com.example.foodplanner.view.search.ParticularIngredientMealsActivity {
+# void onCreate(Bundle)
+}
+class com.example.foodplanner.view.mealdetails.MealDetailsIngredientsAdapter {
+~ ArrayList<IngredientWithMeasure> ingredientWithMeasures
++ MealDetailsIngredientsAdapter.ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MealDetailsIngredientsAdapter.ViewHolder,int)
++ int getItemCount()
++ void setList(ArrayList<IngredientWithMeasure>)
+}
+class com.example.foodplanner.view.mealdetails.MealDetailsIngredientsAdapter.ViewHolder {
+- TextView textViewIngredientName
+- TextView textViewIngredientMeasure
+- ImageView roundedImageView
+~ View view
++ TextView getTextViewIngredientName()
++ TextView getTextViewIngredientMeasure()
++ ImageView getRoundedImageView()
++ View getView()
+}
+class com.example.foodplanner.view.search.AllCategoriesActivity {
+~ RecyclerView recyclerView
+~ LinearLayoutManager layoutManager
+~ CategoryAdapter categoryAdapter
+# void onCreate(Bundle)
++ Category[] getCategories()
++ void navigateToParticularCategoryMeals(String)
+}
+class com.example.foodplanner.models.detailedmeal.MealDetailsRepository {
++ {static} String BASE_URL
++ {static} void getDetailedMealRepository(String)
+}
+class com.example.foodplanner.presenter.FirebasePresenter {
+~ SignUpViewInterface signUpViewInterface
+~ FirebaseRepositoryInterface firebaseRepositoryInterface
+~ ProfileFragmentInterface profileFragmentInterface
++ void registerUser(String,String,String,String)
++ void logoutCurrentUser()
++ void onSuccessRegistration()
++ void onFailureRegistration(Task<AuthResult>)
++ void onSuccessLogOut()
++ void onFailureLogOut(Exception)
+}
+class com.example.foodplanner.view.weekplanner.WeekPlanAdapter {
+- Context context
+- ViewGroup viewGroup
+- List<DetailedMeal> mealsWeekPlanner
+- {static} String TAG
+- Boolean firstTimeInTheView
+- ProgressDialog progressDialog
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.weekplanner.WeekPlanAdapter.ViewHolder {
++ TextView week_planner_tv_mealName
++ ImageView week_planner_img_mealImg
++ ImageButton btn_removeWeekPlannerItem
+}
+class com.example.foodplanner.view.search.adapter.AreaAdapter {
+- {static} String TAG
+~ AllAreasActivityInterface allAreasActivityInterface
+~ Area[] areas
++ MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MyViewHolder,int)
++ int getItemCount()
++ {static} int calculateInSampleSize(BitmapFactory.Options,int,int)
++ {static} Bitmap decodeSampledBitmapFromResource(Resources,int,int,int)
+}
+class com.example.foodplanner.view.search.adapter.AreaAdapter.MyViewHolder {
+~ ConstraintLayout wholeItem
+~ TextView name
+~ ImageView photo
+}
+class com.example.foodplanner.view.search.adapter.IngredientAdapter {
+- {static} String TAG
+~ AllIngredientsActivityInterface allIngredientsActivityInterface
+~ ArrayList<Ingredient> ingredients
+~ Context context
++ IngredientAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(IngredientAdapter.MyViewHolder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.search.adapter.IngredientAdapter.MyViewHolder {
+~ ConstraintLayout wholeItem
+~ TextView name
+~ ImageView photo
+}
+class com.example.foodplanner.view.meal.MealBigAdapter {
+- ArrayList<SimpleMeal> simpleMealList
+- OnMealClick listOnClickItem
++ Holder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(Holder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.meal.MealBigAdapter.Holder {
++ ImageView meal_photo
++ TextView meal_name_tv
++ void onClick(View)
+}
+interface com.example.foodplanner.view.mealdetails.MealDetailsInterface {
++ void onSuccessResult(DetailedMeal)
++ void onFailureResult(String)
++ void navigateToCalendar(String)
+}
+abstract class com.example.foodplanner.models.AppDataBase {
+- {static} AppDataBase instance
++ {abstract}MealDAO mealDAO()
++ {static} AppDataBase getInstance(Context)
+}
+class com.example.foodplanner.view.search.SearchFragment {
+~ Button btnSearchByArea
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
+}
+class com.example.foodplanner.models.detailedmeal.DetailedMeal {
+- String idMeal
+- String strMeal
+- String strCategory
+- String strArea
+- String strInstructions
+- String strMealThumb
+- String strYoutube
++ String strIngredient1
++ String strIngredient2
++ String strIngredient3
++ String strIngredient4
++ String strIngredient5
++ String strIngredient6
++ String strIngredient7
++ String strIngredient8
++ String strIngredient9
++ String strIngredient10
++ String strIngredient11
++ String strIngredient12
++ String strIngredient13
++ String strIngredient14
++ String strIngredient15
++ String strIngredient16
++ String strIngredient17
++ String strIngredient18
++ String strIngredient19
++ String strIngredient20
++ String strMeasure1
++ String strMeasure2
++ String strMeasure3
++ String strMeasure4
++ String strMeasure5
++ String strMeasure6
++ String strMeasure7
++ String strMeasure8
++ String strMeasure9
++ String strMeasure10
++ String strMeasure11
++ String strMeasure12
++ String strMeasure13
++ String strMeasure14
++ String strMeasure15
++ String strMeasure16
++ String strMeasure17
++ String strMeasure18
++ String strMeasure19
++ String strMeasure20
+- String weekDay
++ String getWeekDay()
++ void setWeekDay(String)
++ String getIdMeal()
++ void setIdMeal(String)
++ String getStrMeal()
++ void setStrMeal(String)
++ String getStrCategory()
++ void setStrCategory(String)
++ String getStrArea()
++ void setStrArea(String)
++ String getStrInstructions()
++ void setStrInstructions(String)
++ String getStrMealThumb()
++ void setStrMealThumb(String)
++ String getStrYoutube()
++ void setStrYoutube(String)
++ String getStrIngredient1()
++ void setStrIngredient1(String)
++ String getStrIngredient2()
++ void setStrIngredient2(String)
++ String getStrIngredient3()
++ void setStrIngredient3(String)
++ String getStrIngredient4()
++ void setStrIngredient4(String)
++ String getStrIngredient5()
++ void setStrIngredient5(String)
++ String getStrIngredient6()
++ void setStrIngredient6(String)
++ String getStrIngredient7()
++ void setStrIngredient7(String)
++ String getStrIngredient8()
++ void setStrIngredient8(String)
++ String getStrIngredient9()
++ void setStrIngredient9(String)
++ String getStrIngredient10()
++ void setStrIngredient10(String)
++ String getStrIngredient11()
++ void setStrIngredient11(String)
++ String getStrIngredient12()
++ void setStrIngredient12(String)
++ String getStrIngredient13()
++ void setStrIngredient13(String)
++ String getStrIngredient14()
++ void setStrIngredient14(String)
++ String getStrIngredient15()
++ void setStrIngredient15(String)
++ String getStrIngredient16()
++ void setStrIngredient16(String)
++ String getStrIngredient17()
++ void setStrIngredient17(String)
++ String getStrIngredient18()
++ void setStrIngredient18(String)
++ String getStrIngredient19()
++ void setStrIngredient19(String)
++ String getStrIngredient20()
++ void setStrIngredient20(String)
++ String getStrMeasure1()
++ void setStrMeasure1(String)
++ String getStrMeasure2()
++ void setStrMeasure2(String)
++ String getStrMeasure3()
++ void setStrMeasure3(String)
++ String getStrMeasure4()
++ void setStrMeasure4(String)
++ String getStrMeasure5()
++ void setStrMeasure5(String)
++ String getStrMeasure6()
++ void setStrMeasure6(String)
++ String getStrMeasure7()
++ void setStrMeasure7(String)
++ String getStrMeasure8()
++ void setStrMeasure8(String)
++ String getStrMeasure9()
++ void setStrMeasure9(String)
++ String getStrMeasure10()
++ void setStrMeasure10(String)
++ String getStrMeasure11()
++ void setStrMeasure11(String)
++ String getStrMeasure12()
++ void setStrMeasure12(String)
++ String getStrMeasure13()
++ void setStrMeasure13(String)
++ String getStrMeasure14()
++ void setStrMeasure14(String)
++ String getStrMeasure15()
++ void setStrMeasure15(String)
++ String getStrMeasure16()
++ void setStrMeasure16(String)
++ String getStrMeasure17()
++ void setStrMeasure17(String)
++ String getStrMeasure18()
++ void setStrMeasure18(String)
++ String getStrMeasure19()
++ void setStrMeasure19(String)
++ String getStrMeasure20()
++ void setStrMeasure20(String)
+}
+interface com.example.foodplanner.view.search.ParticularAreaMealActivityInterface {
++ void getParticularAreaMeals(String)
++ void onSuccessResult(ArrayList<SimpleMeal>)
++ void onFailureResult(String)
++ void navigateToViewDetails(String)
+}
+class com.example.foodplanner.models.search.Area {
+- String areaName
+- int imageResourceId
++ String getAreaName()
++ int getImageResourceId()
+}
+class com.example.foodplanner.presenter.ParticularAreaMealPresenter {
+- {static} ParticularAreaMealActivityInterface particularAreaMealInterface
++ {static} void getParticularAreaMeals(String,ParticularAreaMealActivityInterface)
++ {static} void onSuccessResult(ArrayList<SimpleMeal>)
++ {static} void onFailureResult(String)
+}
+interface com.example.foodplanner.view.search.AllAreasActivityInterface {
++ Area[] getAreas()
++ void navigateToParticularAreaMeal(String)
+}
+class com.example.foodplanner.presenter.WeekPlanPresenter {
+- DetailedMealList repositoryLocal
+- Context context
++ ArrayList<DetailedMeal> returnStoredMealsItems()
+}
+interface com.example.foodplanner.view.ProfileFragmentInterface {
++ void logoutCurrentUser()
++ void onSuccessLogOut()
++ void onFailureLogOut(Exception)
+}
+class com.example.foodplanner.models.SignupUser {
+- String displayName
+- String email
+- String password
+- String confirmPassword
++ String getDisplayName()
++ String getEmail()
++ String getPassword()
++ String getConfirmPassword()
++ void setDisplayName(String)
++ void setEmail(String)
++ void setPassword(String)
++ void setConfirmPassword(String)
+}
+class com.example.foodplanner.presenter.AllIngredientPresenter {
+- {static} AllIngredientsActivityInterface allIngredientsActivityInterface
++ {static} void getAllIngredients(AllIngredientsActivityInterface)
++ {static} void onSuccessResult(ArrayList<Ingredient>)
++ {static} void onFailureResult(String)
+}
+class com.example.foodplanner.presenter.ParticularCategoryMealsPresenter {
+- {static} ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface
++ {static} void getParticularAreaMeals(String,ParticularCategoryMealsActivityInterface)
++ {static} void onSuccessResult(ArrayList<SimpleMeal>)
++ {static} void onFailureResult(String)
+}
+class com.example.foodplanner.models.search.RootIngredients {
+- ArrayList<Ingredient> meals
++ ArrayList<Ingredient> getMeals()
+}
+class com.example.foodplanner.view.FavoriteMealsAdapter {
+- Context context
+- List<DetailedMeal> meals
+- FavoriteFragmentInterface favoriteFragmentInterface
++ {static} String TAG
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
++ void setList(List<DetailedMeal>)
+}
+class com.example.foodplanner.view.FavoriteMealsAdapter.ViewHolder {
+~ ImageView meal_photo
+~ TextView meal_name_tv
+~ Button btnRemoveFromFavorite
+}
+class com.example.foodplanner.models.FavoriteRepository {
+- MealDAO dao
+- {static} FavoriteRepository favoriteRepository
+- Observable<List<DetailedMeal>> storedMeals
++ {static} FavoriteRepository getInstance(Context)
++ void insertMeal(DetailedMeal)
++ void deleteMeal(DetailedMeal)
++ Observable<List<DetailedMeal>> getAllStoredMeals()
+}
+interface com.example.foodplanner.view.search.SearchFragmentInterface {
+}
+class com.example.foodplanner.view.search.AllAreasActivity {
+~ RecyclerView recyclerView
+~ LinearLayoutManager layoutManager
+~ AreaAdapter areaAdapter
+# void onCreate(Bundle)
++ Area[] getAreas()
++ void navigateToParticularAreaMeal(String)
+}
+class com.example.foodplanner.view.search.ParticularCategoryMealsActivity {
+~ String categoryName
+~ TextView tvCategory
+~ RecyclerView recyclerView
+~ GridLayoutManager gridlayoutManager
+~ ParticularCategoryAdapter particularCategoryAdapter
+# void onCreate(Bundle)
++ void getParticularCategoryMeals(String)
++ void onSuccessResult(ArrayList<SimpleMeal>)
++ void onFailureResult(String)
++ void navigateToViewDetails(String)
+}
+interface com.example.foodplanner.view.signup.SignUpViewInterface {
++ void registerUser(String,String,String,String)
++ void onSuccessRegistrationView()
++ void onFailureRegistrationView(Task<AuthResult>)
+}
+class com.example.foodplanner.models.MealList {
+- ArrayList<SimpleMeal> meals
++ ArrayList<SimpleMeal> getMeals()
++ void setMeals(ArrayList<SimpleMeal>)
+}
+class com.example.foodplanner.view.calendar.CalendarFragment {
+~ CalendarView simpleCalendarView
+~ Date mStartTime
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
+}
+interface com.example.foodplanner.view.FavoriteFragmentInterface {
++ void showData(List<DetailedMeal>)
++ void showDataFailed(String)
++ void removeMeal(DetailedMeal)
+}
+class com.example.foodplanner.presenter.MealDetailsPresenter {
+- {static} MealDetailsInterface mealDetailsInterface
++ {static} void getMealDetailsPresenter(String,MealDetailsInterface)
++ {static} void onSuccessResult(DetailedMeal)
++ {static} void onFailureResult(String)
+}
+class com.example.foodplanner.view.weekplanner.WeekPlanActivity {
+- RecyclerView recyclerViewSaturday
+- WeekPlanAdapter weekPlanAdapterSaturday
+- List<DetailedMeal> mealsWeekPlanSaturday
++ {static} TextView tv_Saturday
+- {static} String TAG
+- WeekPlanPresenter weekPlanPresenter
++ void onCreate(Bundle)
++ void onPause()
+}
+class com.example.foodplanner.view.ProfileFragment {
+~ AlertDialog.Builder builder
+~ FirebasePresenterInterface firebasePresenterInterface
+- ProgressBar progressBar
+~ Button btnLogout
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
++ void logoutCurrentUser()
++ void onSuccessLogOut()
++ void onFailureLogOut(Exception)
++ void createLogoutDialog()
+}
+class com.example.foodplanner.view.AddRecipeToPlanActivity {
+# void onCreate(Bundle)
+}
+interface com.example.foodplanner.view.search.AllIngredientsActivityInterface {
++ void getIngredients()
++ void onSuccessResult(ArrayList<Ingredient>)
++ void onFailureResult(String)
++ void navigateToParticularIngredientMeals(String)
+}
+class com.example.foodplanner.view.mealdetails.MealDetailsAdapter {
+~ AddAndRemoveFavoriteViewInterface addAndRemoveFavoriteViewInterface
+- ArrayList<DetailedMeal> detailedMealsList
+~ MealDetailsInterface mealDetailsInterface
++ MealDetailsAdapter.Holder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MealDetailsAdapter.Holder,int)
++ int getItemCount()
+}
+class com.example.foodplanner.view.mealdetails.MealDetailsAdapter.Holder {
++ ImageView meal_photo
++ TextView meal_name_tv
+- YouTubePlayerView mealVideo
+~ RecyclerView recyclerViewIngredients
+~ CheckBox btnFavorite
+~ Button btn_add_to_calender
+~ View black_background
+~ MealDetailsIngredientsAdapter mealDetailsIngredientsAdapter
+~ LinearLayoutManager layoutManager
+}
+class com.example.foodplanner.models.search.Ingredient {
+- String strDescription
+- String strIngredient
+- Object strType
+- String idIngredient
++ String getStrDescription()
++ String getStrIngredient()
++ Object getStrType()
++ String getIdIngredient()
+}
+class com.example.foodplanner.view.StartScreenActivity {
+- Button loginBtn
+~ SignInButton googleSignBtn
+~ GoogleSignInClient googleSignInClient
+~ FirebaseAuth firebaseAuth
+~ SharedPreferences.Editor editor
+- SharedPreferences sharedPreferences
+~ String googleClientId
+# void onCreate(Bundle)
+- void initializeVariables()
+- void setListeners()
+- void googleSignIn()
+# void onActivityResult(int,int,Intent)
+}
+class com.example.foodplanner.presenter.FavoritePresenter {
+~ {static} FavoriteFragmentInterface favoriteFragment
++ {static} void addMeal(DetailedMeal,Context)
++ {static} void getMeals(LifecycleOwner,Context,FavoriteFragmentInterface)
++ {static} void removeFromFav(DetailedMeal,Context)
+}
+class com.example.foodplanner.view.mealdetails.ViewDetailsActivity {
+- RecyclerView recyclerViewDetails
+- MealDetailsAdapter mealDetailsAdapter
+~ String mealId
+- RetrofitInterface retrofitInterface
+~ ArrayList<DetailedMeal> detailedMeals
+# void onCreate(Bundle)
+- void callApi()
+- void initValues()
++ void onSuccessResult(DetailedMeal)
++ void onFailureResult(String)
++ void navigateToCalendar(String)
++ void addMeal(DetailedMeal)
++ void removeMeal(DetailedMeal)
+}
+interface com.example.foodplanner.view.search.AllCategoriesActivityInterface {
++ Category[] getCategories()
++ void navigateToParticularCategoryMeals(String)
+}
+interface com.example.foodplanner.network.SignUpResult {
++ void onSuccessRegistration()
++ void onFailureRegistration(Task<AuthResult>)
+}
+class com.example.foodplanner.models.detailedmeal.DetailedMealList {
+- ArrayList<DetailedMeal> meals
++ ArrayList<DetailedMeal> getMeals()
++ void setMeals(ArrayList<DetailedMeal>)
+}
+
+
+com.example.foodplanner.view.FavoriteFragmentInterface <|.. com.example.foodplanner.view.FavoriteFragment
+androidx.fragment.app.Fragment <|-- com.example.foodplanner.view.FavoriteFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.LoginActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.SplashScreen
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.calendar.CalendarfromViewDetails
+com.example.foodplanner.view.meal.OnMealClick <|.. com.example.foodplanner.view.HomeFragment
+androidx.fragment.app.Fragment <|-- com.example.foodplanner.view.HomeFragment
+com.example.foodplanner.view.search.adapter.Adapter <|-- com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter
+com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter +.. com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter.MyViewHolder
+com.example.foodplanner.view.search.adapter.ViewHolder <|-- com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter.MyViewHolder
+com.example.foodplanner.view.search.AllIngredientsActivityInterface <|.. com.example.foodplanner.view.search.AllIngredientsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.search.AllIngredientsActivity
+com.example.foodplanner.view.search.adapter.Adapter <|-- com.example.foodplanner.view.search.adapter.CategoryAdapter
+com.example.foodplanner.view.search.adapter.CategoryAdapter +.. com.example.foodplanner.view.search.adapter.CategoryAdapter.MyViewHolder
+com.example.foodplanner.view.search.adapter.ViewHolder <|-- com.example.foodplanner.view.search.adapter.CategoryAdapter.MyViewHolder
+com.example.foodplanner.view.meal.Adapter <|-- com.example.foodplanner.view.meal.MealAdapter
+com.example.foodplanner.view.meal.MealAdapter +.. com.example.foodplanner.view.meal.MealAdapter.Holder
+com.example.foodplanner.view.meal.OnClickListener <|.. com.example.foodplanner.view.meal.MealAdapter.Holder
+com.example.foodplanner.view.meal.ViewHolder <|-- com.example.foodplanner.view.meal.MealAdapter.Holder
+androidx.lifecycle.LiveData <|-- com.example.foodplanner.utility.InternetChecker
+com.example.foodplanner.view.search.ParticularAreaMealActivityInterface <|.. com.example.foodplanner.view.search.ParticularAreaMealActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.search.ParticularAreaMealActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.MainActivity
+com.example.foodplanner.view.search.adapter.Adapter <|-- com.example.foodplanner.view.search.adapter.ParticularAreaAdapter
+com.example.foodplanner.view.search.adapter.ParticularAreaAdapter +.. com.example.foodplanner.view.search.adapter.ParticularAreaAdapter.MyViewHolder
+com.example.foodplanner.view.search.adapter.ViewHolder <|-- com.example.foodplanner.view.search.adapter.ParticularAreaAdapter.MyViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.LeadingActivity
+com.example.foodplanner.view.signup.SignUpViewInterface <|.. com.example.foodplanner.view.signup.SignUpActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.signup.SignUpActivity
+com.example.foodplanner.models.FirebaseRepositoryInterface <|.. com.example.foodplanner.models.FirebaseFirebaseRepository
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.search.ParticularIngredientMealsActivity
+com.example.foodplanner.view.mealdetails.Adapter <|-- com.example.foodplanner.view.mealdetails.MealDetailsIngredientsAdapter
+com.example.foodplanner.view.mealdetails.MealDetailsIngredientsAdapter +.. com.example.foodplanner.view.mealdetails.MealDetailsIngredientsAdapter.ViewHolder
+com.example.foodplanner.view.mealdetails.ViewHolder <|-- com.example.foodplanner.view.mealdetails.MealDetailsIngredientsAdapter.ViewHolder
+com.example.foodplanner.view.search.AllCategoriesActivityInterface <|.. com.example.foodplanner.view.search.AllCategoriesActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.search.AllCategoriesActivity
+com.example.foodplanner.presenter.FirebasePresenterInterface <|.. com.example.foodplanner.presenter.FirebasePresenter
+com.example.foodplanner.network.SignUpResult <|.. com.example.foodplanner.presenter.FirebasePresenter
+com.example.foodplanner.network.LogOutResult <|.. com.example.foodplanner.presenter.FirebasePresenter
+com.example.foodplanner.view.weekplanner.Adapter <|-- com.example.foodplanner.view.weekplanner.WeekPlanAdapter
+com.example.foodplanner.view.weekplanner.WeekPlanAdapter +.. com.example.foodplanner.view.weekplanner.WeekPlanAdapter.ViewHolder
+com.example.foodplanner.view.weekplanner.ViewHolder <|-- com.example.foodplanner.view.weekplanner.WeekPlanAdapter.ViewHolder
+com.example.foodplanner.view.search.adapter.Adapter <|-- com.example.foodplanner.view.search.adapter.AreaAdapter
+com.example.foodplanner.view.search.adapter.AreaAdapter +.. com.example.foodplanner.view.search.adapter.AreaAdapter.MyViewHolder
+com.example.foodplanner.view.search.adapter.ViewHolder <|-- com.example.foodplanner.view.search.adapter.AreaAdapter.MyViewHolder
+com.example.foodplanner.view.search.adapter.Adapter <|-- com.example.foodplanner.view.search.adapter.IngredientAdapter
+com.example.foodplanner.view.search.adapter.IngredientAdapter +.. com.example.foodplanner.view.search.adapter.IngredientAdapter.MyViewHolder
+com.example.foodplanner.view.search.adapter.ViewHolder <|-- com.example.foodplanner.view.search.adapter.IngredientAdapter.MyViewHolder
+com.example.foodplanner.view.meal.Adapter <|-- com.example.foodplanner.view.meal.MealBigAdapter
+com.example.foodplanner.view.meal.MealBigAdapter +.. com.example.foodplanner.view.meal.MealBigAdapter.Holder
+com.example.foodplanner.view.meal.OnClickListener <|.. com.example.foodplanner.view.meal.MealBigAdapter.Holder
+com.example.foodplanner.view.meal.ViewHolder <|-- com.example.foodplanner.view.meal.MealBigAdapter.Holder
+androidx.room.RoomDatabase <|-- com.example.foodplanner.models.AppDataBase
+androidx.fragment.app.Fragment <|-- com.example.foodplanner.view.search.SearchFragment
+com.example.foodplanner.view.Adapter <|-- com.example.foodplanner.view.FavoriteMealsAdapter
+com.example.foodplanner.view.FavoriteMealsAdapter +.. com.example.foodplanner.view.FavoriteMealsAdapter.ViewHolder
+com.example.foodplanner.view.ViewHolder <|-- com.example.foodplanner.view.FavoriteMealsAdapter.ViewHolder
+com.example.foodplanner.view.search.AllAreasActivityInterface <|.. com.example.foodplanner.view.search.AllAreasActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.search.AllAreasActivity
+com.example.foodplanner.view.search.ParticularCategoryMealsActivityInterface <|.. com.example.foodplanner.view.search.ParticularCategoryMealsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.search.ParticularCategoryMealsActivity
+androidx.fragment.app.Fragment <|-- com.example.foodplanner.view.calendar.CalendarFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.weekplanner.WeekPlanActivity
+com.example.foodplanner.view.ProfileFragmentInterface <|.. com.example.foodplanner.view.ProfileFragment
+androidx.fragment.app.Fragment <|-- com.example.foodplanner.view.ProfileFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.AddRecipeToPlanActivity
+com.example.foodplanner.view.mealdetails.Adapter <|-- com.example.foodplanner.view.mealdetails.MealDetailsAdapter
+com.example.foodplanner.view.mealdetails.MealDetailsAdapter +.. com.example.foodplanner.view.mealdetails.MealDetailsAdapter.Holder
+com.example.foodplanner.view.mealdetails.ViewHolder <|-- com.example.foodplanner.view.mealdetails.MealDetailsAdapter.Holder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.StartScreenActivity
+com.example.foodplanner.view.mealdetails.MealDetailsInterface <|.. com.example.foodplanner.view.mealdetails.ViewDetailsActivity
+com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface <|.. com.example.foodplanner.view.mealdetails.ViewDetailsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.foodplanner.view.mealdetails.ViewDetailsActivity
+@enduml

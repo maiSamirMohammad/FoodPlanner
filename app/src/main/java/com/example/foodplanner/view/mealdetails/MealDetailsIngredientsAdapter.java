@@ -35,7 +35,9 @@ public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDeta
     public void onBindViewHolder(@NonNull MealDetailsIngredientsAdapter.ViewHolder holder, int position) {
         holder.getTextViewIngredientMeasure().setText(ingredientWithMeasures.get(position).getIngredientMeasure());
         holder.getTextViewIngredientName().setText(ingredientWithMeasures.get(position).getIngredientName());
-        Glide.with(holder.getView().getContext()).load("https://www.themealdb.com/images/ingredients/" + ingredientWithMeasures.get(position).getIngredientName() + "-Small.png").placeholder(R.drawable.breakfast).error(R.drawable.ic_broken_image).into(holder.getRoundedImageView());
+        Glide.with(holder.getView().getContext())
+                .load("https://www.themealdb.com/images/ingredients/" + ingredientWithMeasures.get(position).getIngredientName() + "-Small.png")
+                .placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image).into(holder.getRoundedImageView());
 
 
     }

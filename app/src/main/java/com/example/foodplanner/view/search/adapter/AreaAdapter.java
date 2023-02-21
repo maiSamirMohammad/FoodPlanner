@@ -47,7 +47,9 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyViewHolder> 
         Log.i(TAG, "onBindViewHolder: ");
         Area current =areas[position];
         holder.name.setText(current.getAreaName());
-        holder.photo.setImageResource(current.getImageResourceId());
+//        holder.photo.setImageResource(current.getImageResourceId());
+                holder.photo.setImageBitmap(
+                decodeSampledBitmapFromResource( holder.photo.getResources(), current.getImageResourceId(), 100, 80));
         holder.wholeItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,4 +118,6 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyViewHolder> 
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
     }
+
+
 }
