@@ -1,19 +1,16 @@
 package com.example.foodplanner.models.search;
 
 public class Category {
-    private String categoryName;
-    private int imageResourceId;
+    private String idCategory;
+    private String strCategory;
+    private String strCategoryDescription;
+    private String strCategoryThumb;
 
-    public Category(String categoryName, int imageResourceId) {
-        this.categoryName = categoryName;
-        this.imageResourceId = imageResourceId;
+    public String getStrCategory() {
+        return strCategory;
     }
 
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public int getImageResourceId() {
-        return imageResourceId;
+    public String getStrCategoryThumb() {
+        return strCategoryThumb;
     }
 }

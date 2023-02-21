@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ParticularCategoryMealsPresenter {
     private  static ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface;
 
-    public static void getParticularAreaMeals(String categoryName,ParticularCategoryMealsActivityInterface particularCategoryMealsInterface){
+    public static void getParticularCategoryMeals(String categoryName,ParticularCategoryMealsActivityInterface particularCategoryMealsInterface){
         particularCategoryMealsActivityInterface=particularCategoryMealsInterface;
         ParticularCategoryMealsRepository.getParticularCategoryMeals(categoryName);
     }

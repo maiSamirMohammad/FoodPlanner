@@ -43,7 +43,7 @@ public class ParticularCategoryMealsActivity extends AppCompatActivity implement
 
     @Override
     public void getParticularCategoryMeals(String categoryName) {
-        ParticularCategoryMealsPresenter.getParticularAreaMeals(categoryName ,this);
+        ParticularCategoryMealsPresenter.getParticularCategoryMeals(categoryName ,this);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.foodplanner.network;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 import com.example.foodplanner.models.MealList;
 import com.example.foodplanner.models.search.Ingredient;
+import com.example.foodplanner.models.search.RootCategories;
 import com.example.foodplanner.models.search.RootIngredients;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public interface RetrofitInterface {
 
     @GET("filter.php")
     Observable<MealList> getFilteredMealsCategories(@Query("c") String category);
+    @GET("filter.php")
+    Observable<MealList> getFilteredMealsIngredients(@Query("i") String ingredient);
 
     @GET("lookup.php")
     Observable<DetailedMealList> getDetailedMeal(@Query("i") String detailedMeal);
@@ -28,8 +31,8 @@ public interface RetrofitInterface {
     @GET("list.php?i=list")
     Observable<RootIngredients> getIngredient();
 
-//    @GET("categories.php")
-//    Single<MealList> getAllCategories();
+    @GET("categories.php")
+    Observable<RootCategories> getAllCategories();
 //    @GET("search.php?s=")
 //    Single<MealList> getMealInfoByName(@Query("s") String name);
 //    @GET("search.php")
