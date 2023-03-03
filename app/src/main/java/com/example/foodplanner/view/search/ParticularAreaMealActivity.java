@@ -2,10 +2,8 @@ package com.example.foodplanner.view.search;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,13 +13,10 @@ import android.widget.Toast;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.presenter.ParticularAreaMealPresenter;
-import com.example.foodplanner.view.LoginActivity;
 import com.example.foodplanner.view.mealdetails.ViewDetailsActivity;
-import com.example.foodplanner.view.search.adapter.AreaAdapter;
 import com.example.foodplanner.view.search.adapter.ParticularAreaAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ParticularAreaMealActivity extends AppCompatActivity implements ParticularAreaMealActivityInterface{
     String areaName;
