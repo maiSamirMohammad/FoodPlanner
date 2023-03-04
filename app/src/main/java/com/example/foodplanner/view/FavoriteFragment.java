@@ -1,5 +1,9 @@
 package com.example.foodplanner.view;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,11 +23,13 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 import com.example.foodplanner.presenter.FavoritePresenter;
+import com.example.foodplanner.view.meal.OnMealClick;
+import com.example.foodplanner.view.mealdetails.ViewDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteFragment extends Fragment implements FavoriteFragmentInterface{
+public class FavoriteFragment extends Fragment implements FavoriteFragmentInterface , OnMealClick {
     RecyclerView favoriteRecyclerView;
     FavoriteMealsAdapter favoriteMealsAdapter;
     LinearLayoutManager layoutManager;
@@ -38,7 +44,7 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentInterf
         initUI(view);
 
         layoutManager = new LinearLayoutManager(requireContext());
-        favoriteMealsAdapter = new FavoriteMealsAdapter(requireContext(), new ArrayList<>(), this);
+        favoriteMealsAdapter = new FavoriteMealsAdapter(requireContext(), new ArrayList<>(), this,this);
         favoriteRecyclerView.setAdapter(favoriteMealsAdapter);
         favoriteRecyclerView.setLayoutManager(layoutManager);
 
@@ -68,4 +74,16 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentInterf
     }
 
 
+    @Override
+    public void onClickIndex(String position) {
+        SharedPreferences sharedPreferences;
+        SharedPreferences.Editor editor;
+        sharedPreferences = getContext().getSharedPreferences("my_preferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("mealcurrentid", position);
+        editor.apply();
+
+        Intent intent = new Intent(getContext(), ViewDetailsActivity.class);
+        startActivity(intent);
+    }
 }
