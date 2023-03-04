@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 
+import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.search.Category;
 
 import com.example.foodplanner.view.search.AllCategoriesActivityInterface;
@@ -29,6 +30,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     AllCategoriesActivityInterface allCategoriesActivityInterface;
     ArrayList<Category> categories;
     Context context;
+
+    public void setList(ArrayList<Category> updatedCategories){this.categories=updatedCategories;}
+
 
     public CategoryAdapter(Context context, AllCategoriesActivityInterface allCategoriesActivityInterface, ArrayList<Category> categories) {
         this.allCategoriesActivityInterface = allCategoriesActivityInterface;

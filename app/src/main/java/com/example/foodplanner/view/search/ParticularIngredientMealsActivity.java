@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import com.example.foodplanner.view.search.adapter.ParticularCategoryAdapter;
 import com.example.foodplanner.view.search.adapter.ParticularIngredientAdapter;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ParticularIngredientMealsActivity extends AppCompatActivity implements ParticularIngredientMealsActivityInterface {
     String ingredientName;
@@ -26,11 +30,22 @@ public class ParticularIngredientMealsActivity extends AppCompatActivity impleme
     RecyclerView recyclerView;
     GridLayoutManager gridlayoutManager;
     ParticularIngredientAdapter particularIngredientAdapter;
+    SearchView searchView;
+    ArrayList<SimpleMeal> mealsByIngredient=new ArrayList<>();
+    ArrayList<SimpleMeal> displayList=new ArrayList<>();
+    ImageView closeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_particular_ingredient_meals);
+
+        recyclerView= findViewById(R.id.rv_particular_ingredient_meals);
+        gridlayoutManager =new GridLayoutManager(this,2);
+        gridlayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(gridlayoutManager);
+        particularIngredientAdapter= new ParticularIngredientAdapter(new ArrayList<>(),this);
+        recyclerView.setAdapter(particularIngredientAdapter);
 
         tvIngredient=findViewById(R.id.tv_particular_ingredient);
         Intent myIntent = getIntent();
@@ -40,6 +55,52 @@ public class ParticularIngredientMealsActivity extends AppCompatActivity impleme
             getParticularIngredientMeals(ingredientName);
 
         }
+
+        closeScreen=findViewById(R.id.close_ingredient_meals);
+        closeScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        searchView=findViewById(R.id.sv_search_by_particular_ingredient);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                if (!newText.isEmpty()){
+                    displayList.clear();
+                    particularIngredientAdapter.setList(displayList);
+                    particularIngredientAdapter.notifyDataSetChanged();
+                    String search = newText.toLowerCase(Locale.ROOT);
+                    for (SimpleMeal meal :mealsByIngredient) {
+                        if (meal.getStrMeal().toLowerCase(Locale.ROOT).startsWith(search)) {
+                            displayList.add(meal);
+                        }
+                    }
+                    particularIngredientAdapter.setList(displayList);
+                    particularIngredientAdapter.notifyDataSetChanged();
+
+                }else{
+                    displayList.clear();
+                    displayList.addAll(mealsByIngredient);
+                    particularIngredientAdapter.setList(displayList);
+                    particularIngredientAdapter.notifyDataSetChanged();
+
+
+                }
+
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -52,13 +113,11 @@ public class ParticularIngredientMealsActivity extends AppCompatActivity impleme
     @Override
     public void onSuccessResult(ArrayList<SimpleMeal> meals) {
         //send data to the adapter :D
-        recyclerView= findViewById(R.id.rv_particular_ingredient_meals);
-        gridlayoutManager =new GridLayoutManager(this,2);
-        gridlayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(gridlayoutManager);
-        particularIngredientAdapter= new ParticularIngredientAdapter(meals,this);
-        recyclerView.setAdapter(particularIngredientAdapter);
 
+        mealsByIngredient.addAll(meals);
+        displayList.addAll(meals);
+        particularIngredientAdapter.setList(displayList);
+        particularIngredientAdapter.notifyDataSetChanged();
     }
 
     @Override

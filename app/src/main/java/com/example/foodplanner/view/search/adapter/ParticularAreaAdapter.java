@@ -21,6 +21,7 @@ public class ParticularAreaAdapter extends RecyclerView.Adapter<ParticularAreaAd
 
     ArrayList<SimpleMeal> meals;
 
+    public void setList(ArrayList<SimpleMeal> updatedMeals){this.meals=updatedMeals;}
     ParticularAreaMealActivityInterface particularAreaMealActivityInterface;
 
     public ParticularAreaAdapter(ArrayList<SimpleMeal> meals, ParticularAreaMealActivityInterface particularAreaMealActivityInterface) {

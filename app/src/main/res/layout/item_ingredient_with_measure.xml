@@ -8,7 +8,7 @@
     android:layout_margin="8dp">
 
     <ImageView
-        android:id="@+id/imageViewIngredientImageBGItem"
+        android:id="@+id/iv_ingredient_background"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_marginTop="8dp"
@@ -20,18 +20,18 @@
          />
 
     <ImageView
-        android:id="@+id/imageViewIngredientImageItem_mealDetails"
+        android:id="@+id/iv_ingredient_image_in_meal_details"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:src="@drawable/test_img"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintStart_toStartOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintTop_toTopOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_ingredient_background"
+        app:layout_constraintEnd_toEndOf="@+id/iv_ingredient_background"
+        app:layout_constraintStart_toStartOf="@+id/iv_ingredient_background"
+        app:layout_constraintTop_toTopOf="@+id/iv_ingredient_background"
          />
 
     <TextView
-        android:id="@+id/textViewIngredientNameItem_mealDetails"
+        android:id="@+id/tv_ingredient_name_in_meal_details"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -39,13 +39,13 @@
         android:fontFamily="@font/itim_regular"
         android:textAlignment="center"
         android:textColor="@color/green_text"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintStart_toStartOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewIngredientImageBGItem"
+        app:layout_constraintEnd_toEndOf="@+id/iv_ingredient_background"
+        app:layout_constraintStart_toStartOf="@+id/iv_ingredient_background"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ingredient_background"
         tools:text="Apple" />
 
     <TextView
-        android:id="@+id/textViewIngredientMeasureItem"
+        android:id="@+id/tv_ingredient_measure"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -54,8 +54,8 @@
         android:textAlignment="center"
         android:textColor="@color/green_text"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintStart_toStartOf="@+id/imageViewIngredientImageBGItem"
-        app:layout_constraintTop_toBottomOf="@+id/textViewIngredientNameItem_mealDetails"
+        app:layout_constraintEnd_toEndOf="@+id/iv_ingredient_background"
+        app:layout_constraintStart_toStartOf="@+id/iv_ingredient_background"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ingredient_name_in_meal_details"
         tools:text="1 sliced" />
 </androidx.constraintlayout.widget.ConstraintLayout>

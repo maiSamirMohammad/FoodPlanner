@@ -21,6 +21,8 @@ public class ParticularIngredientAdapter extends RecyclerView.Adapter<Particular
 
     ArrayList<SimpleMeal> meals;
     ParticularIngredientMealsActivityInterface particularIngredientMealsActivityInterface;
+    public void setList(ArrayList<SimpleMeal> updatedMeals){this.meals=updatedMeals;}
+
 
     public ParticularIngredientAdapter(ArrayList<SimpleMeal> meals, ParticularIngredientMealsActivityInterface particularIngredientMealsActivityInterface) {
         this.meals = meals;

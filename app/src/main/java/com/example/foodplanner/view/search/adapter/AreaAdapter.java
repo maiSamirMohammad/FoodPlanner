@@ -22,12 +22,16 @@ import com.example.foodplanner.models.search.Area;
 import com.example.foodplanner.view.search.AllAreasActivityInterface;
 import com.example.foodplanner.view.search.ParticularAreaMealActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyViewHolder> {
     private static final String TAG = "MyAdapter";
     AllAreasActivityInterface allAreasActivityInterface;
-    Area[] areas;
+//    Area[] areas;
+    List areas;
 
-    public AreaAdapter( AllAreasActivityInterface allAreasActivityInterface,Area[] areas) {
+    public AreaAdapter( AllAreasActivityInterface allAreasActivityInterface, List areas) {
         this.allAreasActivityInterface = allAreasActivityInterface;
         this.areas = areas;
     }
@@ -45,7 +49,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Log.i(TAG, "onBindViewHolder: ");
-        Area current =areas[position];
+        Area current = (Area) areas.get(position);
         holder.name.setText(current.getAreaName());
 //        holder.photo.setImageResource(current.getImageResourceId());
                 holder.photo.setImageBitmap(
@@ -62,7 +66,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return areas.length;
+        return areas.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

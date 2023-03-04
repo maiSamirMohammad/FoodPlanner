@@ -30,6 +30,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
     ArrayList<Ingredient> ingredients;
     Context context;
 
+    public void setList(ArrayList<Ingredient> updatedIngredients){this.ingredients=updatedIngredients;}
+
+
     public IngredientAdapter(Context context, AllIngredientsActivityInterface allIngredientsActivityInterface,  ArrayList<Ingredient> ingredients) {
         this.allIngredientsActivityInterface = allIngredientsActivityInterface;
         this.ingredients = ingredients;

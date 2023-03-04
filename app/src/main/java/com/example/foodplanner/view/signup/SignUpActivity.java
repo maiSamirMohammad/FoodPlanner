@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.view.LeadingActivity;
@@ -18,6 +19,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.presenter.FirebasePresenter;
 import com.example.foodplanner.presenter.FirebasePresenterInterface;
+import com.example.foodplanner.view.login.LoginActivity;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -34,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
     private TextInputLayout textInputUsername ,textInputEmail,textInputPassword,textInputConfirmPassword;
     private ProgressBar progressBar;
     private FirebasePresenterInterface firebasePresenterInterface;
+    private TextView goToLogin;
 
 
     @Override
@@ -46,12 +49,20 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
         textInputEmail = findViewById(R.id.til_signup_email);
         textInputPassword = findViewById(R.id.til_signup_password);
         textInputConfirmPassword = findViewById(R.id.til_signup_confirm_password);
+        goToLogin =findViewById(R.id.tv_signup_login);
         progressBar= findViewById(R.id.progress_bar);
 
 
         //create presenter obj
         firebasePresenterInterface = new FirebasePresenter(this, FirebaseFirebaseRepository.getInstance(getApplicationContext()));
 
+        goToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //textWatcher to observe user input... is it empty?
         textInputUsername.getEditText().addTextChangedListener(new TextWatcher() {
