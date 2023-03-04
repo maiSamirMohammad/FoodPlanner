@@ -23,6 +23,9 @@ public class ParticularCategoryAdapter  extends RecyclerView.Adapter<ParticularC
     ArrayList<SimpleMeal> meals;
     ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface;
 
+    public void setList(ArrayList<SimpleMeal> updatedMeals){this.meals=updatedMeals;}
+
+
     public ParticularCategoryAdapter(ArrayList<SimpleMeal> meals, ParticularCategoryMealsActivityInterface particularCategoryMealsActivityInterface) {
         this.meals = meals;
         this.particularCategoryMealsActivityInterface = particularCategoryMealsActivityInterface;

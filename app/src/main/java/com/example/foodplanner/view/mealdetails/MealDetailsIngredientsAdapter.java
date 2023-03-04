@@ -33,11 +33,11 @@ public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDeta
 
     @Override
     public void onBindViewHolder(@NonNull MealDetailsIngredientsAdapter.ViewHolder holder, int position) {
-        holder.getTextViewIngredientMeasure().setText(ingredientWithMeasures.get(position).getIngredientMeasure());
-        holder.getTextViewIngredientName().setText(ingredientWithMeasures.get(position).getIngredientName());
-        Glide.with(holder.getView().getContext())
-                .load("https://www.themealdb.com/images/ingredients/" + ingredientWithMeasures.get(position).getIngredientName() + "-Small.png")
-                .placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image).into(holder.getRoundedImageView());
+        holder.ingredientMeasure.setText(ingredientWithMeasures.get(position).getIngredientMeasure());
+        holder.ingredientName.setText(ingredientWithMeasures.get(position).getIngredientName());
+        Glide.with(holder.ingredientImageView.getContext())
+                .load(holder.ingredientImageView.getContext().getResources().getString(R.string.ingredient_img, ingredientWithMeasures.get(position).getIngredientName()))
+                .placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image).into(holder.ingredientImageView);
 
 
     }
@@ -53,36 +53,22 @@ public class MealDetailsIngredientsAdapter extends RecyclerView.Adapter<MealDeta
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textViewIngredientName;
-        private final TextView textViewIngredientMeasure;
-        private final ImageView roundedImageView;
-        View view;
+         TextView ingredientName;
+         TextView ingredientMeasure;
+         ImageView ingredientImageView;
+
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewIngredientName = itemView.findViewById(R.id.textViewIngredientNameItem_mealDetails);
+            ingredientName = itemView.findViewById(R.id.tv_ingredient_name_in_meal_details);
 
-            textViewIngredientMeasure = itemView.findViewById(R.id.textViewIngredientMeasureItem);
+            ingredientMeasure = itemView.findViewById(R.id.tv_ingredient_measure);
 
-            roundedImageView = itemView.findViewById(R.id.imageViewIngredientImageItem_mealDetails);
-            view = itemView;
+            ingredientImageView = itemView.findViewById(R.id.iv_ingredient_image_in_meal_details);
+
         }
 
-        public TextView getTextViewIngredientName() {
-            return textViewIngredientName;
-        }
 
-        public TextView getTextViewIngredientMeasure() {
-            return textViewIngredientMeasure;
-        }
-
-        public ImageView getRoundedImageView() {
-            return roundedImageView;
-        }
-
-        public View getView() {
-            return view;
-        }
     }
 }
