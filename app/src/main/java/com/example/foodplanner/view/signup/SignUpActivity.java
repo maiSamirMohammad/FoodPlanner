@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodplanner.view.LeadingActivity;
+import com.example.foodplanner.view.MainActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.presenter.FirebasePresenter;
@@ -235,7 +235,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpViewInter
     @Override
     public void onSuccessRegistrationView() {
         progressBar.setVisibility(View.GONE);
-        Intent intent = new Intent(SignUpActivity.this, LeadingActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         startActivity(intent);
 
     }

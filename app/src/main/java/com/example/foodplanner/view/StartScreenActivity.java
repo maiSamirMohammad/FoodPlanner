@@ -72,7 +72,7 @@ public class StartScreenActivity extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartScreenActivity.this, LeadingActivity.class);
+                Intent intent = new Intent(StartScreenActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class StartScreenActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
             // When user already sign in redirect to Leading activity
-            startActivity(new Intent(StartScreenActivity.this, LeadingActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            startActivity(new Intent(StartScreenActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 
@@ -123,7 +123,7 @@ public class StartScreenActivity extends AppCompatActivity {
                                     editor.commit();
                                     //firebaseFirebaseRepository.registerUserGoogle();
 
-                                    startActivity(new Intent(StartScreenActivity.this, LeadingActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    startActivity(new Intent(StartScreenActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 } else {
                                     Toast.makeText(StartScreenActivity.this, "Firebase authentication Failed", Toast.LENGTH_SHORT).show();
                                 }

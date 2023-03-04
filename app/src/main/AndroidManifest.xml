@@ -59,7 +59,7 @@
             android:name=".view.AddRecipeToPlanActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LeadingActivity"
+            android:name=".view.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -68,10 +68,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.signup.SignUpActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
