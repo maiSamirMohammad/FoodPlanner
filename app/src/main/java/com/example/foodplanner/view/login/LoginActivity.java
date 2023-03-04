@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.foodplanner.R;
 import com.example.foodplanner.presenter.LoginPresenter;
 import com.example.foodplanner.presenter.LoginPresenterInterface;
-import com.example.foodplanner.view.LeadingActivity;
+import com.example.foodplanner.view.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginListener {
 
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         editor.apply();
 
         mProgressBar.setVisibility(View.GONE);
-        Intent intent = new Intent(this, LeadingActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

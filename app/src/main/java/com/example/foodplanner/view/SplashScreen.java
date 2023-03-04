@@ -1,10 +1,7 @@
 package com.example.foodplanner.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,7 +26,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 if(userID!=null){
-                    Intent intent = new Intent(SplashScreen.this, LeadingActivity.class);
+                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                     startActivity(intent);
                 }
                 else
