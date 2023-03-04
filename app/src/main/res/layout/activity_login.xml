@@ -5,24 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".view.login.LoginActivity">
 
+
+
     <EditText
         android:id="@+id/email_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
+        android:hint="example@example.com"
+
         android:inputType="textEmailAddress"
+
         app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
+
+
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/email_edit_text"
-        android:hint="@string/password"
+        android:hint="Enter at least 8 characters"
         android:inputType="textPassword"
 
         app:layout_constraintBottom_toTopOf="@+id/login_button"
@@ -90,5 +96,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textSize="20sp"
+        android:textColor="@color/green_text"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/email_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="20sp"
+        android:textColor="@color/green_text"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
