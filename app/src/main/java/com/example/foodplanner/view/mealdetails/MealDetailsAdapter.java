@@ -1,9 +1,5 @@
 package com.example.foodplanner.view.mealdetails;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,21 +20,14 @@ import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 
 import com.example.foodplanner.models.detailedmeal.IngredientWithMeasure;
-import com.example.foodplanner.view.LoginActivity;
 
 import com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface;
-import com.example.foodplanner.view.FavoriteFragment;
 
-import com.example.foodplanner.view.search.adapter.CategoryAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.Holder> {
 

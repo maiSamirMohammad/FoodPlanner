@@ -1,22 +1,14 @@
 package com.example.foodplanner.view.mealdetails;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
 import com.example.foodplanner.models.FirebaseFirebaseRepository;
 import com.example.foodplanner.models.detailedmeal.DetailedMealList;
@@ -24,17 +16,9 @@ import com.example.foodplanner.network.RetrofitClient;
 import com.example.foodplanner.network.RetrofitInterface;
 import com.example.foodplanner.presenter.FavoritePresenter;
 import com.example.foodplanner.view.AddAndRemoveFavoriteViewInterface;
-import com.example.foodplanner.view.FavoriteFragmentInterface;
-import com.example.foodplanner.view.HomeFragment;
-import com.example.foodplanner.view.LoginActivity;
 import com.example.foodplanner.view.calendar.CalendarfromViewDetails;
-import com.example.foodplanner.view.meal.MealBigAdapter;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;

@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.models.FirebaseFirebaseRepository;
+import com.example.foodplanner.view.login.LoginActivity;
 import com.example.foodplanner.view.signup.SignUpActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
