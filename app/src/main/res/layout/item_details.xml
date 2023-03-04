@@ -104,19 +104,23 @@
 
             android:text="@string/instructions"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
 
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_calender" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video"
+        />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/rv_ingredients"
-            app:layout_constraintTop_toBottomOf="@+id/tv_details_instructions" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_calender"
+            />
 
 
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -124,8 +128,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:autoPlay="false"
-            android:layout_margin="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_ingredients" />

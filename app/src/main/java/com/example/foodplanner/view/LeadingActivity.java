@@ -50,13 +50,6 @@ public class LeadingActivity extends AppCompatActivity {
                     }
                     break;
 
-                case R.id.nav_calender:
-                    if(userID!=null){
-                        replaceFragment(new CalendarFragment());
-                    }else {
-                        signupForMore();
-                    }
-                    break;
                 case R.id.nav_profile:
                     if(userID!=null){
                         replaceFragment(new ProfileFragment());

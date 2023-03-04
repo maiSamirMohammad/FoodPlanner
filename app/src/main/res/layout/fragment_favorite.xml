@@ -56,29 +56,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <SearchView
-        android:id="@+id/sv_my_favorite"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@android:color/transparent"
-        android:searchIcon="@drawable/ic_search_48"
-        android:queryHint="Search "
-        android:background="@drawable/green_transparent_background"
-        app:layout_constraintBottom_toTopOf="@+id/gl_horizontal_top2"
-        app:layout_constraintEnd_toStartOf="@+id/gl_vertical_end"
-        app:layout_constraintStart_toEndOf="@+id/gl_vertical_start"
-        app:layout_constraintTop_toBottomOf="@+id/gl_horizontal_top" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_favorite"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/gl_horizontal_top2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/gl_vertical_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/gl_vertical_start"
-        />
+        app:layout_constraintTop_toTopOf="@+id/gl_horizontal_top" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

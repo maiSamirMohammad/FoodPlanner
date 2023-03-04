@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.models.SimpleMeal;
 import com.example.foodplanner.models.detailedmeal.DetailedMeal;
+import com.example.foodplanner.view.meal.OnMealClick;
 
 import java.util.List;
 
@@ -25,11 +26,14 @@ public class FavoriteMealsAdapter  extends RecyclerView.Adapter<FavoriteMealsAda
     private List<DetailedMeal> meals;
     private FavoriteFragmentInterface favoriteFragmentInterface;
     public static final String TAG = "FavoriteAdapter";
-    public FavoriteMealsAdapter( Context context,List<DetailedMeal> meals,
-                             FavoriteFragmentInterface favoriteFragmentInterface){
+    OnMealClick listOnClickItem;
+    public FavoriteMealsAdapter(Context context, List<DetailedMeal> meals,
+                                FavoriteFragmentInterface favoriteFragmentInterface , OnMealClick listOnClickItem){
         this.context = context;
         this.meals = meals;
         this.favoriteFragmentInterface= favoriteFragmentInterface;
+        this.listOnClickItem= listOnClickItem;
+
     }
 
     @NonNull
@@ -46,6 +50,8 @@ public class FavoriteMealsAdapter  extends RecyclerView.Adapter<FavoriteMealsAda
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DetailedMeal currentMeal = meals.get(position);
         holder.meal_name_tv.setText(currentMeal.getStrMeal());
+        holder.meal_id_tv.setText(String.valueOf(currentMeal.getIdMeal()));
+
         Glide.with(holder.meal_photo.getContext())
                 .load(currentMeal.getStrMealThumb())
                 .placeholder(R.drawable.loading_animation)
@@ -73,12 +79,24 @@ public class FavoriteMealsAdapter  extends RecyclerView.Adapter<FavoriteMealsAda
     class ViewHolder extends RecyclerView.ViewHolder{
         ImageView meal_photo;
         TextView meal_name_tv;
+        TextView meal_id_tv;
         Button btnRemoveFromFavorite;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             meal_photo = itemView.findViewById(R.id.dish_image);
             meal_name_tv = itemView.findViewById(R.id.dish_name);
+            meal_id_tv = itemView.findViewById(R.id.dish_id);
             btnRemoveFromFavorite = itemView.findViewById(R.id.btn_remove_from_favorite);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listOnClickItem != null)
+                    {
+                        listOnClickItem.onClickIndex(meal_id_tv.getText().toString());
+                    }
+                }
+            });
         }
     }
 }
