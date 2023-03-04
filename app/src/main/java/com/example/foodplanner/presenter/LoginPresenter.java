@@ -1,4 +1,7 @@
-package com.example.foodplanner.view.login;
+package com.example.foodplanner.presenter;
+
+import com.example.foodplanner.view.login.LoginListener;
+import com.example.foodplanner.view.login.LoginModel;
 
 public class LoginPresenter implements LoginPresenterInterface, LoginListener {
 
@@ -25,8 +28,8 @@ public class LoginPresenter implements LoginPresenterInterface, LoginListener {
     }
 
     @Override
-    public void onLoginSuccess() {
-        mListener.onLoginSuccess();
+    public void onLoginSuccess(String userId) {
+        mListener.onLoginSuccess(userId);
     }
 
     @Override

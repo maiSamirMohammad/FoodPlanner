@@ -22,7 +22,8 @@ public class LoginModel {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            listener.onLoginSuccess();
+                            String userId = mAuth.getUid();
+                            listener.onLoginSuccess(userId);
                         } else {
                             listener.onLoginError(task.getException().getMessage());
                         }

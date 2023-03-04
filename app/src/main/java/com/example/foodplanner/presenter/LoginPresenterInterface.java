@@ -1,4 +1,4 @@
-package com.example.foodplanner.view.login;
+package com.example.foodplanner.presenter;
 
 public interface LoginPresenterInterface {
     void loginUser(String email, String password);

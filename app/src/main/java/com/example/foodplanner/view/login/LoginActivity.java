@@ -2,18 +2,21 @@ package com.example.foodplanner.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.presenter.LoginPresenter;
+import com.example.foodplanner.presenter.LoginPresenterInterface;
 import com.example.foodplanner.view.LeadingActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginListener {
@@ -57,7 +60,12 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(String userId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userID", userId);
+        editor.apply();
+
         mProgressBar.setVisibility(View.GONE);
         Intent intent = new Intent(this, LeadingActivity.class);
         startActivity(intent);
@@ -70,28 +78,28 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
     private boolean validateCredentials(String email, String password) {
-        // Check for a valid email address
-        if (TextUtils.isEmpty(email)) {
-            mEmailEditText.setError("getString(R.string.error_field_required)");
-            mEmailEditText.requestFocus();
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEmailEditText.setError("getString(R.string.error_invalid_email)");
-            mEmailEditText.requestFocus();
-            return false;
-        }
+        boolean flag = true;
 
-        // Check for a valid password
         if (TextUtils.isEmpty(password)) {
-            mPasswordEditText.setError("getString(R.string.error_field_required)");
+            mPasswordEditText.setError("Password field can't be empty");
             mPasswordEditText.requestFocus();
-            return false;
-        } else if (password.length() < 6) {
-            mPasswordEditText.setError("getString(R.string.error_invalid_password)");
+            flag = false;
+        } else if (password.length() < 8) {
+            mPasswordEditText.setError("Password should be at least 8 characters including (digits and letters)");
             mPasswordEditText.requestFocus();
-            return false;
+            flag = false;
         }
 
-        return true;
+        if (TextUtils.isEmpty(email)) {
+            mEmailEditText.setError("Email field can't be empty");
+            mEmailEditText.requestFocus();
+            flag = false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            mEmailEditText.setError("Enter a valid email address: example@example.com");
+            mEmailEditText.requestFocus();
+            flag = false;
+        }
+
+        return flag;
     }
 }
