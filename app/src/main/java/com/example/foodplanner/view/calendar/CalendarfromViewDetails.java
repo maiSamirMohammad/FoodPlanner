@@ -39,7 +39,7 @@ public class CalendarfromViewDetails extends AppCompatActivity {
                 Toast.makeText(CalendarfromViewDetails.this, dayOfMonth + "/" + (month+1) + "/" + year, Toast.LENGTH_LONG).show();
 
                 String startTime = Integer.toString(year) + "-" + Integer.toString(month + 1) + "-" + Integer.toString(dayOfMonth) + "T09:00:00";
-                String endTime = Integer.toString(year) + "-" + Integer.toString(month + 1) + "-" + Integer.toString(dayOfMonth) + "T12:00:00";
+                String endTime = Integer.toString(year) + "-" + Integer.toString(month + 1) + "-" + Integer.toString(dayOfMonth) + "T17:00:00";
 
                 SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 try {
