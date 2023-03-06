@@ -81,9 +81,9 @@ Application Features:
 
 <h2> - Search by Area, Category or Ingredient</h2>
 <p align="center">
-  <img src="screenshots/searchby.jpg" width="20%">
+  <img src="https://user-images.githubusercontent.com/51149273/222995526-da2ab523-5e85-4962-b12e-fb1ffb753f70.jpg" width="20%">
   &nbsp;
-  <img src="screenshots/area.jpg" width="20%">
+  <img src="https://user-images.githubusercontent.com/51149273/222995523-9807120d-922b-4a32-949f-3ee214f7b712.jpg" width="20%">
   &nbsp;
   <img src="https://user-images.githubusercontent.com/51149273/222993547-2e1cf25a-202e-478d-ac9e-665fd0ed3137.jpg" width="20%">
   &nbsp;
